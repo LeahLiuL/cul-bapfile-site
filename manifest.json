@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-15 13:47:19",
+ "generated_at": "2026-07-15 14:14:05",
  "base_cols": [
   "vvd",
   "lane",
@@ -12,7 +12,6 @@
   "awk",
   "dg",
   "rf",
-  "bb",
   "slot_opr",
   "cont_opr",
   "rev_month"
@@ -29,7 +28,6 @@
   "awk",
   "dg",
   "rf",
-  "bb",
   "slot_opr",
   "cont_opr",
   "rev_month",
@@ -48,7 +46,6 @@
   "awk",
   "dg",
   "rf",
-  "bb",
   "slot_opr",
   "cont_opr",
   "rev_month",

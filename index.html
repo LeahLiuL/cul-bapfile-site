@@ -132,7 +132,7 @@ textarea:focus{outline:none;border-color:var(--blue);}
 const LABELS = {
   vvd:"VVD", lane:"LANE", container_no:"CONTAINER No.", fe:"Full/Empty",
   pol:"POL", pod:"POD", type_size:"Type/Size", weight:"Weight",
-  awk:"AWK", dg:"DG", rf:"RF", bb:"BB",
+  awk:"AWK", dg:"DG", rf:"RF",
   slot_opr:"SLOT_OPR", cont_opr:"CONT_OPR", rev_month:"Revenue Month",
   target_port:"Target Port", mismatch:"Mismatch", dq:"DQ"
 };
@@ -180,7 +180,7 @@ function fmtW(v){ const n=parseFloat(v); return isNaN(n)?(v||''):n.toLocaleStrin
 function flagCell(v){ return (v==='Y'||v==='y')?'<span class="flagY">Y</span>':(v||''); }
 function cellHtml(k,v){
   if(k==='weight') return `<td>${fmtW(v)}</td>`;
-  if(['awk','dg','rf','bb'].includes(k)) return `<td>${flagCell(v)}</td>`;
+  if(['awk','dg','rf'].includes(k)) return `<td>${flagCell(v)}</td>`;
   if(k==='fe') return `<td>${v==='Full'?'F':(v==='Empty'?'E':v)}</td>`;
   if(k==='mismatch') return v==='Y'?`<td><span class="badge-warn">&#9888; Target port is mismatched with POL</span></td>`:`<td></td>`;
   if(k==='dq') return v==='Y'?`<td><span class="badge-dq">&#9888; 源数据异常</span></td>`:`<td></td>`;
@@ -320,7 +320,7 @@ function exportData(kind){
   const rowsTxt = RESULTS.map(r=>cols.map(c=>{
     let v = r[c];
     if(c==='weight') v = fmtW(v);
-    else if(['awk','dg','rf','bb'].includes(c)) v = (v==='Y'||v==='y') ? 'Y' : '';
+    else if(['awk','dg','rf'].includes(c)) v = (v==='Y'||v==='y') ? 'Y' : '';
     else if(c==='fe') v = (v==='Full') ? 'F' : (v==='Empty') ? 'E' : v;
     else if(c==='mismatch') v = (v==='Y') ? 'Target port is mismatched with POL' : '';
     else if(c==='dq') v = (v==='Y') ? '源数据异常' : '';
