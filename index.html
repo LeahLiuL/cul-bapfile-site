@@ -3,128 +3,240 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CULines Vessel Bapfile · Static Lookup</title>
+<title>CULines Vessel Bapfile · Lookup</title>
 <style>
-:root{--bg:#f5f7fa;--card:#fff;--ink:#1f2937;--muted:#6b7280;--line:#e5e7eb;
---blue:#2563eb;--teal:#0d9488;--amber:#d97706;--rose:#e11d48;--green:#059669;--slate:#64748b;}
-*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;}
-body{background:var(--bg);color:var(--ink);padding:20px;line-height:1.5;}
-h1{font-size:20px;margin-bottom:2px;}
-.sub{color:var(--muted);font-size:13px;margin-bottom:14px;}
-.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
-.tab{background:#eef2f7;color:var(--ink);border:1px solid var(--line);border-bottom:none;border-radius:10px 10px 0 0;height:38px;padding:0 20px;font-size:14px;font-weight:600;cursor:pointer;}
-.tab.active{background:var(--blue);color:#fff;border-color:var(--blue);}
-.panel{background:var(--card);border:1px solid var(--line);border-radius:0 12px 12px 12px;padding:16px;margin-bottom:16px;}
-.filters{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;}
-.fgroup{display:flex;flex-direction:column;gap:4px;}
-.fgroup label{font-size:12px;color:var(--muted);}
-input,select{height:34px;border:1px solid var(--line);border-radius:8px;padding:0 10px;font-size:13px;background:#fff;color:var(--ink);min-width:130px;}
-input:focus,select:focus{outline:none;border-color:var(--blue);}
-button{cursor:pointer;border:none;border-radius:8px;height:34px;padding:0 16px;font-size:13px;font-weight:600;}
-.btn-primary{background:var(--blue);color:#fff;}
-.btn-ghost{background:#eef2f7;color:var(--ink);}
-.flags{display:flex;gap:10px;align-items:center;}
-.flags label{font-size:13px;display:flex;align-items:center;gap:4px;color:var(--ink);}
-.toolbar{display:flex;justify-content:space-between;align-items:center;margin:4px 0 10px;flex-wrap:wrap;gap:10px;}
-.total{font-size:13px;color:var(--muted);}
-.total b{color:var(--blue);font-size:15px;}
-.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:10px;background:#fff;max-height:62vh;}
-table{border-collapse:collapse;width:100%;font-size:12px;white-space:nowrap;}
-th,td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:left;}
-thead th{position:sticky;top:0;background:#eef2f7;z-index:2;font-weight:600;}
-tbody tr:hover{background:#f0f6ff;}
-.flagY{color:var(--rose);font-weight:700;}
-textarea{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px;color:var(--ink);width:100%;font-family:inherit;resize:vertical;line-height:1.5;}
-textarea:focus{outline:none;border-color:var(--blue);}
-.pager{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap;}
-.pager .pg-btn{background:#eef2f7;color:var(--ink);}
-.pager .pg-btn:disabled{opacity:.45;cursor:not-allowed;}
-.note{font-size:12px;color:var(--muted);margin-top:8px;}
+:root{
+  --bg:#eef2f7;--card:#ffffff;--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;
+  --brand:#0b3d91;--brand2:#1d4ed8;--accent:#0ea5e9;
+  --teal:#0d9488;--amber:#d97706;--rose:#e11d48;--green:#059669;
+  --shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px rgba(15,23,42,.06);
+  --shadow-sm:0 1px 3px rgba(15,23,42,.08);
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,"Segoe UI","Microsoft YaHei",Roboto,sans-serif;}
+body{background:
+   radial-gradient(1200px 400px at 100% -10%,rgba(14,165,233,.10),transparent 60%),
+   radial-gradient(900px 400px at -10% 0%,rgba(11,61,145,.08),transparent 55%),
+   var(--bg);
+   color:var(--ink);line-height:1.55;min-height:100vh;}
+
+/* ---------- top header bar ---------- */
+.appbar{position:sticky;top:0;z-index:50;background:linear-gradient(120deg,var(--brand),var(--brand2));
+   color:#fff;box-shadow:0 4px 18px rgba(11,61,145,.28);}
+.appbar-in{max-width:1320px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand .logo{width:40px;height:40px;border-radius:11px;background:rgba(255,255,255,.16);
+   display:grid;place-items:center;font-weight:800;font-size:15px;letter-spacing:.5px;
+   border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(4px);}
+.brand h1{font-size:18px;font-weight:700;letter-spacing:.2px;line-height:1.2;}
+.brand .tagline{font-size:12px;color:rgba(255,255,255,.78);font-weight:400;}
+.appbar-right{margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.updated{display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.14);
+   border:1px solid rgba(255,255,255,.24);border-radius:12px;padding:7px 14px;}
+.updated .dot{width:8px;height:8px;border-radius:50%;background:#4ade80;
+   box-shadow:0 0 0 4px rgba(74,222,128,.25);flex:none;}
+.updated .lbl{font-size:11px;color:rgba(255,255,255,.72);line-height:1.1;text-transform:uppercase;letter-spacing:.6px;}
+.updated .val{font-size:13px;font-weight:700;color:#fff;line-height:1.2;font-variant-numeric:tabular-nums;}
+
+/* ---------- page container ---------- */
+.wrap{max-width:1320px;margin:0 auto;padding:22px 24px 60px;}
+
+/* ---------- stat cards ---------- */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+   padding:16px 18px;box-shadow:var(--shadow);position:relative;overflow:hidden;}
+.stat::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--brand2);}
+.stat.s2::before{background:var(--teal);} .stat.s3::before{background:var(--accent);} .stat.s4::before{background:var(--amber);}
+.stat .k{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.3px;}
+.stat .v{font-size:26px;font-weight:800;margin-top:4px;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.5px;}
+.stat .u{font-size:12px;color:var(--muted);margin-top:2px;}
+
+.intro{color:var(--muted);font-size:12.5px;margin:-4px 0 18px;max-width:1000px;line-height:1.6;}
+.intro b{color:var(--ink);}
+
+/* ---------- tabs ---------- */
+.tabs{display:inline-flex;gap:4px;margin-bottom:16px;background:#e2e8f0;padding:4px;border-radius:12px;}
+.tab{background:transparent;color:var(--muted);border:none;border-radius:9px;height:38px;padding:0 22px;
+   font-size:14px;font-weight:600;cursor:pointer;transition:all .15s;}
+.tab:hover{color:var(--ink);}
+.tab.active{background:#fff;color:var(--brand);box-shadow:var(--shadow-sm);}
+
+/* ---------- panels ---------- */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+   padding:20px;margin-bottom:18px;box-shadow:var(--shadow);}
+.panel-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.panel-title .ic{width:22px;height:22px;border-radius:7px;background:rgba(29,78,216,.1);color:var(--brand2);
+   display:grid;place-items:center;font-size:13px;}
+.filters{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;}
+.fgroup{display:flex;flex-direction:column;gap:6px;}
+.fgroup label{font-size:12px;color:var(--muted);font-weight:600;}
+input,select{height:38px;border:1px solid var(--line);border-radius:10px;padding:0 12px;font-size:13px;
+   background:#fff;color:var(--ink);min-width:140px;transition:border .15s,box-shadow .15s;}
+input:focus,select:focus{outline:none;border-color:var(--brand2);box-shadow:0 0 0 3px rgba(29,78,216,.12);}
+button{cursor:pointer;border:none;border-radius:10px;height:38px;padding:0 20px;font-size:13px;font-weight:600;transition:filter .15s,transform .05s;}
+button:active{transform:translateY(1px);}
+.btn-primary{background:linear-gradient(120deg,var(--brand),var(--brand2));color:#fff;box-shadow:0 4px 12px rgba(29,78,216,.28);}
+.btn-primary:hover{filter:brightness(1.06);}
+.btn-ghost{background:#f1f5f9;color:var(--ink);border:1px solid var(--line);}
+.btn-ghost:hover{background:#e2e8f0;}
+.flags{display:flex;gap:14px;align-items:center;height:38px;}
+.flags label{font-size:13px;display:flex;align-items:center;gap:5px;color:var(--ink);cursor:pointer;}
+.flags input,.chk input{width:16px;height:16px;min-width:0;accent-color:var(--brand2);cursor:pointer;}
+.chk{font-size:13px;display:flex;align-items:center;gap:6px;color:var(--ink);height:38px;cursor:pointer;}
+textarea{border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:13px;color:var(--ink);
+   width:100%;font-family:ui-monospace,"SF Mono","Consolas",monospace;resize:vertical;line-height:1.6;background:#fff;}
+textarea:focus{outline:none;border-color:var(--brand2);box-shadow:0 0 0 3px rgba(29,78,216,.12);}
+.note{font-size:12px;color:var(--muted);margin-top:10px;}
 .note.err{color:#b91c1c;font-weight:600;}
-.empty{padding:30px;text-align:center;color:var(--muted);}
-.badge-warn{background:#fee2e2;color:#b91c1c;padding:2px 7px;border-radius:6px;font-size:11px;font-weight:700;white-space:nowrap;}
-.row-mismatch{background:#fff7f7;}
-.row-mismatch:hover{background:#ffe9e9;}
-.badge-dq{background:#fde68a;color:#92400e;padding:2px 7px;border-radius:6px;font-size:11px;font-weight:700;white-space:nowrap;}
-.row-dirty{background:#fff7ed;}
-.row-dirty:hover{background:#ffedd5;}
-/* export tools */
+.hint-line{font-size:12px;color:var(--muted);margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);}
+
+/* ---------- toolbar ---------- */
+.toolbar{display:flex;justify-content:space-between;align-items:center;margin:2px 0 12px;flex-wrap:wrap;gap:12px;}
+.total{font-size:13px;color:var(--muted);}
+.total b{color:var(--brand);font-size:16px;font-variant-numeric:tabular-nums;}
 .exptools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
-.exptools .btn-ghost{height:30px;padding:0 12px;font-size:12px;}
+.exptools .btn-ghost{height:34px;padding:0 14px;font-size:12px;}
 .exptools .hint{font-size:11px;color:var(--muted);}
-/* progress bar */
-.progress{height:5px;background:#eef2f7;border-radius:3px;overflow:hidden;margin:2px 0 10px;display:none;}
-.progress .bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--teal));transition:width .2s;}
+
+/* ---------- table ---------- */
+.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:var(--radius);background:#fff;max-height:64vh;box-shadow:var(--shadow);}
+table{border-collapse:collapse;width:100%;font-size:12.5px;white-space:nowrap;}
+th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;}
+thead th{position:sticky;top:0;background:#f8fafc;z-index:2;font-weight:700;color:#334155;
+   text-transform:uppercase;font-size:11px;letter-spacing:.4px;border-bottom:2px solid var(--line);}
+tbody tr:nth-child(even){background:#fbfcfe;}
+tbody tr:hover{background:#eff6ff;}
+.flagY{color:var(--rose);font-weight:800;}
+.badge-warn{background:#fee2e2;color:#b91c1c;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;white-space:nowrap;}
+.row-mismatch{background:#fff7f7 !important;}
+.row-mismatch:hover{background:#ffe9e9 !important;}
+.badge-dq{background:#fde68a;color:#92400e;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;white-space:nowrap;}
+.row-dirty{background:#fff7ed !important;}
+.row-dirty:hover{background:#ffedd5 !important;}
+.empty{padding:44px 20px;text-align:center;color:var(--muted);font-size:13px;}
+
+/* ---------- pager ---------- */
+.pager{display:flex;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap;}
+.pager .pg-btn{background:#f1f5f9;color:var(--ink);border:1px solid var(--line);}
+.pager .pg-btn:hover:not(:disabled){background:#e2e8f0;}
+.pager .pg-btn:disabled{opacity:.4;cursor:not-allowed;}
+
+/* ---------- progress ---------- */
+.progress{height:6px;background:#e2e8f0;border-radius:4px;overflow:hidden;margin:2px 0 12px;display:none;}
+.progress .bar{height:100%;width:0;background:linear-gradient(90deg,var(--brand2),var(--accent));transition:width .2s;}
+
+/* ---------- footer ---------- */
+.foot{text-align:center;color:var(--muted);font-size:11.5px;margin-top:26px;padding-top:18px;border-top:1px solid var(--line);}
+
+@media(max-width:900px){ .stats{grid-template-columns:repeat(2,1fr);} }
 @media(max-width:680px){
-  body{padding:12px;}
-  h1{font-size:17px;}
-  .filters{gap:10px;}
-  .fgroup{width:100%;}
-  input,select{min-width:0;width:100%;}
-  .tab{padding:0 12px;font-size:13px;}
-  .toolbar{flex-direction:column;align-items:flex-start;}
-  .exptools{width:100%;}
+  .appbar-in{padding:12px 16px;} .brand h1{font-size:16px;} .brand .tagline{display:none;}
+  .wrap{padding:16px 14px 48px;}
+  .stats{grid-template-columns:repeat(2,1fr);gap:10px;}
+  .stat .v{font-size:21px;}
+  .filters{gap:12px;} .fgroup{width:100%;} input,select{min-width:0;width:100%;}
+  .toolbar{flex-direction:column;align-items:flex-start;} .exptools{width:100%;}
   textarea{font-size:14px;}
 }
 </style>
 </head>
 <body>
-<h1>CULines · Vessel Bapfile (Static)</h1>
-<div class="sub">Static site — no server required. Source: Vessel Bapfile.xlsx. <b>Container Lookup</b> returns one row per container, deduped by Target Port (VSL_SCH_PORT_CD): the row whose POL equals its Target Port and is newest by Revenue Month is kept; if none matches, the newest row is shown and flagged "Target port is mismatched with POL". <b>Browse</b> filters by VVD (contains), Lane, and/or Revenue Month (all optional) — rows whose POD is not a valid 5-letter port code or whose Type/Size is not a valid container code are flagged <b>⚠ 源数据异常</b> (dirty source rows from the xlsx, not a parse error).</div>
 
-<div class="tabs">
-  <button class="tab active" id="tabLookup">Container Lookup</button>
-  <button class="tab" id="tabBrowse">Browse (VVD / Lane)</button>
-</div>
-
-<div class="panel" id="panelLookup">
-  <div class="fgroup" style="flex:1 1 100%;">
-    <label>Container List (one per line, or comma / space separated)</label>
-    <textarea id="contlist" rows="5" placeholder="BMOU6486165&#10;SLVU5022179&#10;TGCU5034445"></textarea>
-  </div>
-  <div style="margin-top:10px;display:flex;gap:8px;">
-    <button class="btn-primary" id="lookupBtn">Lookup</button>
-    <button class="btn-ghost" id="lookupClear">Clear</button>
-  </div>
-  <div class="note" id="lookupNote"></div>
-</div>
-
-<div class="panel" id="panelBrowse" style="display:none;">
-  <div class="filters">
-    <div class="fgroup"><label>Lane (航线)</label><select id="b_lane"><option value="">All</option></select></div>
-    <div class="fgroup"><label>VVD (contains)</label><input id="b_vvd" placeholder="e.g. COSCO" style="min-width:180px;"></div>
-    <div class="fgroup"><label>Revenue Month</label><select id="b_month"><option value="">All</option></select></div>
-    <div class="fgroup"><label>Special Containers</label><div class="flags">
-      <label><input type="checkbox" name="b_flag" value="AWK">AWK</label>
-      <label><input type="checkbox" name="b_flag" value="DG">DG</label>
-      <label><input type="checkbox" name="b_flag" value="RF">RF</label>
-    </div></div>
-    <div class="fgroup"><label>Deduplicate</label>
-      <label style="font-size:13px;display:flex;align-items:center;gap:4px;color:var(--ink);"><input type="checkbox" id="b_dedup">By Target Port</label>
+<header class="appbar">
+  <div class="appbar-in">
+    <div class="brand">
+      <div class="logo">CUL</div>
+      <div>
+        <h1>Vessel Bapfile · Lookup</h1>
+        <div class="tagline">CULines &nbsp;·&nbsp; Container & Voyage Data Portal</div>
+      </div>
     </div>
-    <div class="fgroup"><label>&nbsp;</label><button class="btn-primary" id="browseBtn">Browse</button></div>
+    <div class="appbar-right">
+      <div class="updated">
+        <span class="dot"></span>
+        <div>
+          <div class="lbl">数据更新时间</div>
+          <div class="val" id="updatedAt">—</div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="note">All filters are optional and combine: pick a Lane to load just that lane's data (one shard), then narrow by VVD / Revenue Month / special flag. If you enter a VVD or pick a month without a Lane, all lanes are loaded (a few MB) and filtered. Tick "By Target Port" to keep one row per container.</div>
-</div>
+</header>
 
-<div class="progress" id="progress"><div class="bar" id="progressBar"></div></div>
-<div class="toolbar">
-  <div class="total">Records: <b id="total">0</b></div>
-  <div class="total" id="pginfo"></div>
-  <div class="exptools">
-    <button class="btn-ghost" id="expCsv">&#10515; CSV</button>
-    <button class="btn-ghost" id="expXls">&#10515; Excel</button>
-    <span class="hint">export current results</span>
+<div class="wrap">
+
+  <div class="stats">
+    <div class="stat s1"><div class="k">总记录数 · Records</div><div class="v" id="stRows">—</div><div class="u">rows in database</div></div>
+    <div class="stat s2"><div class="k">集装箱数 · Containers</div><div class="v" id="stCont">—</div><div class="u">distinct container no.</div></div>
+    <div class="stat s3"><div class="k">航线数 · Lanes</div><div class="v" id="stLanes">—</div><div class="u">service lanes</div></div>
+    <div class="stat s4"><div class="k">覆盖月份 · Months</div><div class="v" id="stMonths">—</div><div class="u" id="stMonthRange">revenue months</div></div>
   </div>
-</div>
-<div class="tablewrap">
-  <table><thead><tr id="head"></tr></thead><tbody id="body"></tbody></table>
-</div>
-<div class="pager">
-  <button class="pg-btn" id="prev">Prev</button>
-  <span class="total" id="pageof"></span>
-  <button class="pg-btn" id="next">Next</button>
-  <span class="total">Rows/page <select id="psize" style="height:30px;min-width:auto;"><option>100</option><option>200</option><option>500</option><option>1000</option></select></span>
+
+  <div class="intro">
+    Static site — no server required. Source: <b>Vessel Bapfile.xlsx</b>.
+    <b>Container Lookup</b> returns one row per container, deduped by Target Port (VSL_SCH_PORT_CD): the row whose POL equals its Target Port and is newest by Revenue Month is kept; if none matches, the newest row is shown and flagged "Target port is mismatched with POL".
+    <b>Browse</b> filters by VVD (contains), Lane, and/or Revenue Month (all optional) — rows whose POD is not a valid 5-letter port code or whose Type/Size is not a valid container code are flagged <b>⚠ 源数据异常</b> (dirty source rows from the xlsx, not a parse error).
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" id="tabLookup">Container Lookup</button>
+    <button class="tab" id="tabBrowse">Browse · VVD / Lane</button>
+  </div>
+
+  <div class="panel" id="panelLookup">
+    <div class="panel-title"><span class="ic">&#128269;</span>Container Lookup</div>
+    <div class="fgroup" style="flex:1 1 100%;">
+      <label>Container List (one per line, or comma / space separated)</label>
+      <textarea id="contlist" rows="5" placeholder="BMOU6486165&#10;SLVU5022179&#10;TGCU5034445"></textarea>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:10px;">
+      <button class="btn-primary" id="lookupBtn">Lookup</button>
+      <button class="btn-ghost" id="lookupClear">Clear</button>
+    </div>
+    <div class="note" id="lookupNote"></div>
+  </div>
+
+  <div class="panel" id="panelBrowse" style="display:none;">
+    <div class="panel-title"><span class="ic">&#128202;</span>Browse by VVD / Lane / Month</div>
+    <div class="filters">
+      <div class="fgroup"><label>Lane (航线)</label><select id="b_lane"><option value="">All</option></select></div>
+      <div class="fgroup"><label>VVD (contains)</label><input id="b_vvd" placeholder="e.g. COSCO" style="min-width:180px;"></div>
+      <div class="fgroup"><label>Revenue Month</label><select id="b_month"><option value="">All</option></select></div>
+      <div class="fgroup"><label>Special Containers</label><div class="flags">
+        <label><input type="checkbox" name="b_flag" value="AWK">AWK</label>
+        <label><input type="checkbox" name="b_flag" value="DG">DG</label>
+        <label><input type="checkbox" name="b_flag" value="RF">RF</label>
+      </div></div>
+      <div class="fgroup"><label>Deduplicate</label>
+        <label class="chk"><input type="checkbox" id="b_dedup">By Target Port</label>
+      </div>
+      <div class="fgroup"><label>&nbsp;</label><button class="btn-primary" id="browseBtn">Browse</button></div>
+    </div>
+    <div class="hint-line">All filters are optional and combine: pick a Lane to load just that lane's data (one shard), then narrow by VVD / Revenue Month / special flag. If you enter a VVD or pick a month without a Lane, all lanes are loaded (a few MB) and filtered. Tick "By Target Port" to keep one row per container.</div>
+  </div>
+
+  <div class="progress" id="progress"><div class="bar" id="progressBar"></div></div>
+  <div class="toolbar">
+    <div class="total">Records: <b id="total">0</b></div>
+    <div class="total" id="pginfo"></div>
+    <div class="exptools">
+      <button class="btn-ghost" id="expCsv">&#10515; CSV</button>
+      <button class="btn-ghost" id="expXls">&#10515; Excel</button>
+      <span class="hint">export current results</span>
+    </div>
+  </div>
+  <div class="tablewrap">
+    <table><thead><tr id="head"></tr></thead><tbody id="body"></tbody></table>
+  </div>
+  <div class="pager">
+    <button class="pg-btn" id="prev">Prev</button>
+    <span class="total" id="pageof"></span>
+    <button class="pg-btn" id="next">Next</button>
+    <span class="total">Rows/page <select id="psize" style="height:32px;min-width:auto;"><option>100</option><option>200</option><option>500</option><option>1000</option></select></span>
+  </div>
+
+  <div class="foot">CULines · Vessel Bapfile Static Portal · Data generated <span id="footTime">—</span></div>
+
 </div>
 
 <script>
@@ -165,11 +277,22 @@ function fillSelect(id, arr){
   const sel = document.getElementById(id);
   arr.forEach(v=>{ const o=document.createElement('option'); o.value=v; o.textContent=v; sel.appendChild(o); });
 }
+function fmtInt(n){ return (n==null||isNaN(n))?'—':Number(n).toLocaleString(); }
 async function init(){
   try{
     MANIFEST = await fetch('manifest.json').then(r=>r.json());
     fillSelect('b_lane', MANIFEST.lanes);
     fillSelect('b_month', MANIFEST.rev_months);
+    // header: data update time + stat cards
+    const g = MANIFEST.generated_at || '';
+    document.getElementById('updatedAt').textContent = g || '—';
+    document.getElementById('footTime').textContent = g || '—';
+    document.getElementById('stRows').textContent   = fmtInt(MANIFEST.total_rows);
+    document.getElementById('stCont').textContent   = fmtInt(MANIFEST.total_containers);
+    document.getElementById('stLanes').textContent  = fmtInt((MANIFEST.lanes||[]).length);
+    const months = MANIFEST.rev_months||[];
+    document.getElementById('stMonths').textContent = fmtInt(months.length);
+    if(months.length) document.getElementById('stMonthRange').textContent = months[0]+' ~ '+months[months.length-1];
   }catch(e){ alert('Failed to load manifest.json: '+e.message); }
 }
 function renderHead(cols){
@@ -348,7 +471,7 @@ function exportData(kind){
   }));
   if(kind==='csv'){
     const esc = s => '"' + String(s).replace(/"/g,'""') + '"';
-    const csv = '﻿' + [head.map(esc).join(',')]
+    const csv = '\ufeff' + [head.map(esc).join(',')]
       .concat(rowsTxt.map(r=>r.map(esc).join(',')))
       .join('\n');
     download(csv, 'bapfile_export.csv', 'text/csv;charset=utf-8');
