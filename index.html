@@ -70,7 +70,7 @@ textarea:focus{outline:none;border-color:var(--blue);}
 </head>
 <body>
 <h1>CULines · Vessel Bapfile (Static)</h1>
-<div class="sub">Static site — no server required. Source: Vessel Bapfile.xlsx. <b>Container Lookup</b> returns one row per container, deduped by Target Port (VSL_SCH_PORT_CD): the row whose POL equals its Target Port and is newest by Revenue Month is kept; if none matches, the newest row is shown and flagged "Target port is mismatched with POL". <b>Browse</b> filters by VVD (contains) and/or Lane — rows whose POD is not a valid 5-letter port code or whose Type/Size is not a valid container code are flagged <b>⚠ 源数据异常</b> (dirty source rows from the xlsx, not a parse error).</div>
+<div class="sub">Static site — no server required. Source: Vessel Bapfile.xlsx. <b>Container Lookup</b> returns one row per container, deduped by Target Port (VSL_SCH_PORT_CD): the row whose POL equals its Target Port and is newest by Revenue Month is kept; if none matches, the newest row is shown and flagged "Target port is mismatched with POL". <b>Browse</b> filters by VVD (contains), Lane, and/or Revenue Month (all optional) — rows whose POD is not a valid 5-letter port code or whose Type/Size is not a valid container code are flagged <b>⚠ 源数据异常</b> (dirty source rows from the xlsx, not a parse error).</div>
 
 <div class="tabs">
   <button class="tab active" id="tabLookup">Container Lookup</button>
