@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-15 13:26:44",
+ "generated_at": "2026-07-15 13:47:19",
  "base_cols": [
   "vvd",
   "lane",
@@ -1961,5 +1961,5 @@
   "2026-08": "data/month/2026-08.json.gz"
  },
  "total_containers": 274821,
- "total_rows": 510880
+ "total_rows": 657956
 }
