@@ -45,6 +45,9 @@ textarea:focus{outline:none;border-color:var(--blue);}
 .badge-warn{background:#fee2e2;color:#b91c1c;padding:2px 7px;border-radius:6px;font-size:11px;font-weight:700;white-space:nowrap;}
 .row-mismatch{background:#fff7f7;}
 .row-mismatch:hover{background:#ffe9e9;}
+.badge-dq{background:#fde68a;color:#92400e;padding:2px 7px;border-radius:6px;font-size:11px;font-weight:700;white-space:nowrap;}
+.row-dirty{background:#fff7ed;}
+.row-dirty:hover{background:#ffedd5;}
 /* export tools */
 .exptools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
 .exptools .btn-ghost{height:30px;padding:0 12px;font-size:12px;}
@@ -67,7 +70,7 @@ textarea:focus{outline:none;border-color:var(--blue);}
 </head>
 <body>
 <h1>CULines · Vessel Bapfile (Static)</h1>
-<div class="sub">Static site — no server required. Source: Vessel Bapfile.xlsx. Rows are deduped by Target Port (VSL_SCH_PORT_CD): for each container the row whose POL equals its Target Port and is newest by Revenue Month is kept; if none matches, the newest row is shown and flagged "Target port is mismatched with POL".</div>
+<div class="sub">Static site — no server required. Source: Vessel Bapfile.xlsx. Rows are deduped by Target Port (VSL_SCH_PORT_CD): for each container the row whose POL equals its Target Port and is newest by Revenue Month is kept; if none matches, the newest row is shown and flagged "Target port is mismatched with POL". Rows whose POD is not a valid 5-letter port code or whose Type/Size is not a valid container code are flagged <b>⚠ 源数据异常</b> (dirty source rows from the xlsx, not a parse error).</div>
 
 <div class="tabs">
   <button class="tab active" id="tabLookup">Container Lookup</button>
@@ -131,8 +134,18 @@ const LABELS = {
   pol:"POL", pod:"POD", type_size:"Type/Size", weight:"Weight",
   awk:"AWK", dg:"DG", rf:"RF", bb:"BB",
   slot_opr:"SLOT_OPR", cont_opr:"CONT_OPR", rev_month:"Revenue Month",
-  target_port:"Target Port", mismatch:"Mismatch"
+  target_port:"Target Port", mismatch:"Mismatch", dq:"DQ"
 };
+// Data-quality: flag rows whose source cells are obviously malformed
+// (POD not a 5-letter port code, or Type/Size not a real container code).
+// These are dirty rows in the source xlsx, not a parse error.
+const PORT_RE=/^[A-Z]{5}$/, TS_RE=/^[0-9]{2}[A-Z]/;
+function isDirty(r){
+  const p=(r.pod||'').toString(); if(p&&!PORT_RE.test(p)) return true;
+  const t=(r.type_size||'').toString(); if(t&&!TS_RE.test(t)) return true;
+  return false;
+}
+function markDQ(r){ r.dq=isDirty(r)?'Y':''; return r; }
 let MANIFEST=null, RESULTS=[], PAGE=1, PAGE_SIZE=100, MODE='lookup', CUR_COLS=[];
 
 // Fetch a shard. Shards are stored gzip-compressed; if a CDN auto-decompresses
@@ -170,6 +183,7 @@ function cellHtml(k,v){
   if(['awk','dg','rf','bb'].includes(k)) return `<td>${flagCell(v)}</td>`;
   if(k==='fe') return `<td>${v==='Full'?'F':(v==='Empty'?'E':v)}</td>`;
   if(k==='mismatch') return v==='Y'?`<td><span class="badge-warn">&#9888; Target port is mismatched with POL</span></td>`:`<td></td>`;
+  if(k==='dq') return v==='Y'?`<td><span class="badge-dq">&#9888; 源数据异常</span></td>`:`<td></td>`;
   return `<td>${v==null?'':v}</td>`;
 }
 function renderPage(){
@@ -185,7 +199,11 @@ function renderPage(){
     body.innerHTML = slice.map(r=>{
       const cells = cols.map(c=>cellHtml(c, r[c])).join('');
       const mis = r.mismatch==='Y';
-      return `<tr${mis?' class="row-mismatch"':''}>` + cells + '</tr>';
+      const dirty = r.dq==='Y';
+      let cls = '';
+      if(mis) cls += ' row-mismatch';
+      if(dirty) cls += ' row-dirty';
+      return `<tr${cls?' class="'+cls.trim()+'"':''}>` + cells + '</tr>';
     }).join('');
   }
   const pages = Math.max(1, Math.ceil(RESULTS.length/PAGE_SIZE));
@@ -231,8 +249,8 @@ async function doLookup(){
     done++; showProgress(done/prefixes.length);
   }
   showProgress(null);
-  RESULTS = nums.filter(n=>dict[n]).map(n=>({...dict[n]}));
-  CUR_COLS = MANIFEST.cont_cols;
+  RESULTS = nums.filter(n=>dict[n]).map(n=>{const o={...dict[n]}; markDQ(o); return o;});
+  CUR_COLS = MANIFEST.cont_cols.concat(['dq']);
   PAGE = 1;
   const notFound = nums.filter(n=>!dict[n]);
   let note = `Matched ${RESULTS.length} / ${nums.length}.`;
@@ -264,7 +282,7 @@ async function doBrowse(){
   try{ data = await fetchJson(MANIFEST.month_files[m]); }
   catch(e){ showProgress(null); setBusy('Failed to load month shard: '+e.message, true); return; }
   showProgress(1);
-  let rows = data.rows.map(r=>{ const o={}; data.cols.forEach((c,i)=>o[c]=r[i]); return o; });
+  let rows = data.rows.map(r=>{ const o={}; data.cols.forEach((c,i)=>o[c]=r[i]); markDQ(o); return o; });
   const vvd = document.getElementById('b_vvd').value.trim().toUpperCase();
   const lane = document.getElementById('b_lane').value;
   const flags = [...document.querySelectorAll('input[name=b_flag]:checked')].map(c=>c.value.toLowerCase());
@@ -277,7 +295,7 @@ async function doBrowse(){
   const deduped = document.getElementById('b_dedup').checked;
   if(deduped) rows = dedup(rows);
   RESULTS = rows;
-  CUR_COLS = MANIFEST.month_cols.concat(deduped ? ['mismatch'] : []);
+  CUR_COLS = MANIFEST.month_cols.concat(deduped ? ['mismatch'] : []).concat(['dq']);
   PAGE = 1;
   showProgress(null);
   setBusy(`Month ${m}: ${rows.length.toLocaleString()} record(s) after filter.`);
@@ -305,6 +323,7 @@ function exportData(kind){
     else if(['awk','dg','rf','bb'].includes(c)) v = (v==='Y'||v==='y') ? 'Y' : '';
     else if(c==='fe') v = (v==='Full') ? 'F' : (v==='Empty') ? 'E' : v;
     else if(c==='mismatch') v = (v==='Y') ? 'Target port is mismatched with POL' : '';
+    else if(c==='dq') v = (v==='Y') ? '源数据异常' : '';
     return v==null ? '' : String(v);
   }));
   if(kind==='csv'){
