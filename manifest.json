@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-14 18:06:18",
+ "generated_at": "2026-07-15 10:21:40",
  "base_cols": [
   "vvd",
   "lane",
@@ -126,6 +126,8 @@
   "MES",
   "MFX",
   "MGA",
+  "MI1",
+  "MV1",
   "NAF",
   "NAX",
   "NP2",
@@ -995,6 +997,7 @@
   "HSSU",
   "HSTU",
   "HSXU",
+  "HSZU",
   "HTLU",
   "HTWU",
   "HTXU",
@@ -1564,6 +1567,7 @@
   "PLSU",
   "PMIU",
   "PMLU",
+  "PMNU",
   "PNMU",
   "POAU",
   "POCU",
@@ -3075,6 +3079,7 @@
   "HSSU": "data/cont/HSSU.json.gz",
   "HSTU": "data/cont/HSTU.json.gz",
   "HSXU": "data/cont/HSXU.json.gz",
+  "HSZU": "data/cont/HSZU.json.gz",
   "HTLU": "data/cont/HTLU.json.gz",
   "HTWU": "data/cont/HTWU.json.gz",
   "HTXU": "data/cont/HTXU.json.gz",
@@ -3644,6 +3649,7 @@
   "PLSU": "data/cont/PLSU.json.gz",
   "PMIU": "data/cont/PMIU.json.gz",
   "PMLU": "data/cont/PMLU.json.gz",
+  "PMNU": "data/cont/PMNU.json.gz",
   "PNMU": "data/cont/PNMU.json.gz",
   "POAU": "data/cont/POAU.json.gz",
   "POCU": "data/cont/POCU.json.gz",
@@ -4347,6 +4353,6 @@
   "2026-07": "data/month/2026-07.json.gz",
   "2026-08": "data/month/2026-08.json.gz"
  },
- "total_containers": 1475489,
- "total_rows": 4439035
+ "total_containers": 1482956,
+ "total_rows": 4786926
 }

@@ -11,7 +11,7 @@
 body{background:var(--bg);color:var(--ink);padding:20px;line-height:1.5;}
 h1{font-size:20px;margin-bottom:2px;}
 .sub{color:var(--muted);font-size:13px;margin-bottom:14px;}
-.tabs{display:flex;gap:8px;margin-bottom:14px;}
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
 .tab{background:#eef2f7;color:var(--ink);border:1px solid var(--line);border-bottom:none;border-radius:10px 10px 0 0;height:38px;padding:0 20px;font-size:14px;font-weight:600;cursor:pointer;}
 .tab.active{background:var(--blue);color:#fff;border-color:var(--blue);}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:0 12px 12px 12px;padding:16px;margin-bottom:16px;}
@@ -36,14 +36,33 @@ tbody tr:hover{background:#f0f6ff;}
 .flagY{color:var(--rose);font-weight:700;}
 textarea{border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px;color:var(--ink);width:100%;font-family:inherit;resize:vertical;line-height:1.5;}
 textarea:focus{outline:none;border-color:var(--blue);}
-.pager{display:flex;align-items:center;gap:10px;margin-top:12px;}
+.pager{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap;}
 .pager .pg-btn{background:#eef2f7;color:var(--ink);}
 .pager .pg-btn:disabled{opacity:.45;cursor:not-allowed;}
 .note{font-size:12px;color:var(--muted);margin-top:8px;}
+.note.err{color:#b91c1c;font-weight:600;}
 .empty{padding:30px;text-align:center;color:var(--muted);}
 .badge-warn{background:#fee2e2;color:#b91c1c;padding:2px 7px;border-radius:6px;font-size:11px;font-weight:700;white-space:nowrap;}
 .row-mismatch{background:#fff7f7;}
 .row-mismatch:hover{background:#ffe9e9;}
+/* export tools */
+.exptools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.exptools .btn-ghost{height:30px;padding:0 12px;font-size:12px;}
+.exptools .hint{font-size:11px;color:var(--muted);}
+/* progress bar */
+.progress{height:5px;background:#eef2f7;border-radius:3px;overflow:hidden;margin:2px 0 10px;display:none;}
+.progress .bar{height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--teal));transition:width .2s;}
+@media(max-width:680px){
+  body{padding:12px;}
+  h1{font-size:17px;}
+  .filters{gap:10px;}
+  .fgroup{width:100%;}
+  input,select{min-width:0;width:100%;}
+  .tab{padding:0 12px;font-size:13px;}
+  .toolbar{flex-direction:column;align-items:flex-start;}
+  .exptools{width:100%;}
+  textarea{font-size:14px;}
+}
 </style>
 </head>
 <body>
@@ -86,9 +105,15 @@ textarea:focus{outline:none;border-color:var(--blue);}
   <div class="note">Browse loads the full month shard (a few MB) into your browser, then filters locally. First load per month may take a moment; results are paginated. Tick "By Target Port" to keep one row per container within that month.</div>
 </div>
 
+<div class="progress" id="progress"><div class="bar" id="progressBar"></div></div>
 <div class="toolbar">
   <div class="total">Records: <b id="total">0</b></div>
   <div class="total" id="pginfo"></div>
+  <div class="exptools">
+    <button class="btn-ghost" id="expCsv">&#10515; CSV</button>
+    <button class="btn-ghost" id="expXls">&#10515; Excel</button>
+    <span class="hint">export current results</span>
+  </div>
 </div>
 <div class="tablewrap">
   <table><thead><tr id="head"></tr></thead><tbody id="body"></tbody></table>
@@ -154,7 +179,8 @@ function renderPage(){
   const start = (PAGE-1)*PAGE_SIZE;
   const slice = RESULTS.slice(start, start+PAGE_SIZE);
   if(!slice.length){
-    body.innerHTML = `<tr><td colspan="${cols.length}" class="empty">No matching records</td></tr>`;
+    const msg = RESULTS.length===0 ? 'No records yet — run a Container Lookup or Browse by Month.' : 'No matching records on this page.';
+    body.innerHTML = `<tr><td colspan="${cols.length}" class="empty">${msg}</td></tr>`;
   } else {
     body.innerHTML = slice.map(r=>{
       const cells = cols.map(c=>cellHtml(c, r[c])).join('');
@@ -169,26 +195,42 @@ function renderPage(){
   document.getElementById('prev').disabled = PAGE<=1;
   document.getElementById('next').disabled = PAGE>=pages;
 }
-function setBusy(msg){ document.getElementById('lookupNote').textContent = msg||''; }
+function setBusy(msg, isErr){
+  const n = document.getElementById('lookupNote');
+  n.textContent = msg||'';
+  n.classList.toggle('err', !!isErr);
+}
+function showProgress(p){
+  const el = document.getElementById('progress');
+  if(p==null){ el.style.display='none'; document.getElementById('progressBar').style.width='0'; return; }
+  el.style.display='block';
+  document.getElementById('progressBar').style.width = Math.max(4, Math.round(p*100)) + '%';
+}
 
 async function doLookup(){
   MODE='lookup';
   const raw = document.getElementById('contlist').value;
   const nums = [...new Set(raw.split(/[\s,;]+/).map(s=>s.trim().toUpperCase()).filter(Boolean))];
-  if(!nums.length){ RESULTS=[]; renderPage(); setBusy(''); return; }
   const byPrefix = {};
   nums.forEach(n=>{ if(n.length>=4){ const p=n.slice(0,4); (byPrefix[p]=byPrefix[p]||[]).push(n); } });
+  const prefixes = Object.keys(byPrefix);
+  if(!nums.length){ RESULTS=[]; CUR_COLS=MANIFEST?MANIFEST.cont_cols:[]; renderPage(); setBusy(''); showProgress(null); return; }
+  if(!prefixes.length){ RESULTS=[]; CUR_COLS=MANIFEST.cont_cols; renderPage(); setBusy('No valid container numbers (each needs at least 4 characters).'); showProgress(null); return; }
   const dict = {};
-  setBusy(`Loading ${Object.keys(byPrefix).length} shard(s) for ${nums.length} container(s)…`);
-  for(const p of Object.keys(byPrefix)){
+  setBusy(`Loading ${prefixes.length} shard(s) for ${nums.length} container(s)…`);
+  showProgress(0);
+  let done = 0;
+  for(const p of prefixes){
     const url = MANIFEST.cont_files[p];
-    if(!url) continue;
+    if(!url){ done++; showProgress(done/prefixes.length); continue; }
     try{
       const data = await fetchJson(url);
       const ci = data.cols.indexOf('container_no');
       data.rows.forEach(r=>{ const o={}; data.cols.forEach((c,i)=>o[c]=r[i]); dict[r[ci]] = o; });
     }catch(e){ console.warn('shard fail', p, e); }
+    done++; showProgress(done/prefixes.length);
   }
+  showProgress(null);
   RESULTS = nums.filter(n=>dict[n]).map(n=>({...dict[n]}));
   CUR_COLS = MANIFEST.cont_cols;
   PAGE = 1;
@@ -217,9 +259,11 @@ async function doBrowse(){
   const m = document.getElementById('b_month').value;
   if(!m){ alert('Please select a Revenue Month first.'); return; }
   setBusy('Loading month shard '+m+' …');
+  showProgress(0.15);
   let data;
   try{ data = await fetchJson(MANIFEST.month_files[m]); }
-  catch(e){ setBusy('Failed: '+e.message); return; }
+  catch(e){ showProgress(null); setBusy('Failed to load month shard: '+e.message, true); return; }
+  showProgress(1);
   let rows = data.rows.map(r=>{ const o={}; data.cols.forEach((c,i)=>o[c]=r[i]); return o; });
   const vvd = document.getElementById('b_vvd').value.trim().toUpperCase();
   const lane = document.getElementById('b_lane').value;
@@ -235,8 +279,48 @@ async function doBrowse(){
   RESULTS = rows;
   CUR_COLS = MANIFEST.month_cols.concat(deduped ? ['mismatch'] : []);
   PAGE = 1;
+  showProgress(null);
   setBusy(`Month ${m}: ${rows.length.toLocaleString()} record(s) after filter.`);
   renderPage();
+}
+
+/* ---------- export current results ---------- */
+function download(content, name, type){
+  const blob = new Blob([content], {type});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(()=>URL.revokeObjectURL(a.href), 2000);
+}
+function exportData(kind){
+  if(!RESULTS.length){ alert('No data to export. Run a lookup or browse first.'); return; }
+  const cols = CUR_COLS;
+  const head = cols.map(c=>(LABELS[c]||c));
+  const rowsTxt = RESULTS.map(r=>cols.map(c=>{
+    let v = r[c];
+    if(c==='weight') v = fmtW(v);
+    else if(['awk','dg','rf','bb'].includes(c)) v = (v==='Y'||v==='y') ? 'Y' : '';
+    else if(c==='fe') v = (v==='Full') ? 'F' : (v==='Empty') ? 'E' : v;
+    else if(c==='mismatch') v = (v==='Y') ? 'Target port is mismatched with POL' : '';
+    return v==null ? '' : String(v);
+  }));
+  if(kind==='csv'){
+    const esc = s => '"' + String(s).replace(/"/g,'""') + '"';
+    const csv = '﻿' + [head.map(esc).join(',')]
+      .concat(rowsTxt.map(r=>r.map(esc).join(',')))
+      .join('\n');
+    download(csv, 'bapfile_export.csv', 'text/csv;charset=utf-8');
+  } else {
+    const escH = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    const thead = '<tr>' + head.map(h=>`<th>${escH(h)}</th>`).join('') + '</tr>';
+    const tbody = rowsTxt.map(r=>'<tr>'+r.map(v=>`<td>${escH(v)}</td>`).join('')+'</tr>').join('');
+    const html = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel">'
+      + '<head><meta charset="utf-8"></head><body><table border="1">'+thead+tbody+'</table></body></html>';
+    download(html, 'bapfile_export.xls', 'application/vnd.ms-excel');
+  }
 }
 
 document.getElementById('tabLookup').onclick = ()=>{
@@ -254,11 +338,13 @@ document.getElementById('tabBrowse').onclick = ()=>{
   MODE='browse';
 };
 document.getElementById('lookupBtn').onclick = doLookup;
-document.getElementById('lookupClear').onclick = ()=>{ document.getElementById('contlist').value=''; RESULTS=[]; renderPage(); setBusy(''); };
+document.getElementById('lookupClear').onclick = ()=>{ document.getElementById('contlist').value=''; RESULTS=[]; renderPage(); setBusy(''); showProgress(null); };
 document.getElementById('browseBtn').onclick = doBrowse;
 document.getElementById('prev').onclick = ()=>{ if(PAGE>1){ PAGE--; renderPage(); } };
 document.getElementById('next').onclick = ()=>{ PAGE++; renderPage(); };
 document.getElementById('psize').onchange = e=>{ PAGE_SIZE=parseInt(e.target.value); PAGE=1; renderPage(); };
+document.getElementById('expCsv').onclick = ()=>exportData('csv');
+document.getElementById('expXls').onclick = ()=>exportData('xls');
 
 init();
 renderPage();
