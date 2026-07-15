@@ -70,11 +70,11 @@ textarea:focus{outline:none;border-color:var(--blue);}
 </head>
 <body>
 <h1>CULines · Vessel Bapfile (Static)</h1>
-<div class="sub">Static site — no server required. Source: Vessel Bapfile.xlsx. Rows are deduped by Target Port (VSL_SCH_PORT_CD): for each container the row whose POL equals its Target Port and is newest by Revenue Month is kept; if none matches, the newest row is shown and flagged "Target port is mismatched with POL". Rows whose POD is not a valid 5-letter port code or whose Type/Size is not a valid container code are flagged <b>⚠ 源数据异常</b> (dirty source rows from the xlsx, not a parse error).</div>
+<div class="sub">Static site — no server required. Source: Vessel Bapfile.xlsx. <b>Container Lookup</b> returns one row per container, deduped by Target Port (VSL_SCH_PORT_CD): the row whose POL equals its Target Port and is newest by Revenue Month is kept; if none matches, the newest row is shown and flagged "Target port is mismatched with POL". <b>Browse</b> filters by VVD (contains) and/or Lane — rows whose POD is not a valid 5-letter port code or whose Type/Size is not a valid container code are flagged <b>⚠ 源数据异常</b> (dirty source rows from the xlsx, not a parse error).</div>
 
 <div class="tabs">
   <button class="tab active" id="tabLookup">Container Lookup</button>
-  <button class="tab" id="tabBrowse">Browse by Month</button>
+  <button class="tab" id="tabBrowse">Browse (VVD / Lane)</button>
 </div>
 
 <div class="panel" id="panelLookup">
@@ -91,21 +91,20 @@ textarea:focus{outline:none;border-color:var(--blue);}
 
 <div class="panel" id="panelBrowse" style="display:none;">
   <div class="filters">
-    <div class="fgroup"><label>Revenue Month (required)</label><select id="b_month"><option value="">Select…</option></select></div>
+    <div class="fgroup"><label>Lane (航线)</label><select id="b_lane"><option value="">All</option></select></div>
     <div class="fgroup"><label>VVD (contains)</label><input id="b_vvd" placeholder="e.g. COSCO" style="min-width:180px;"></div>
-    <div class="fgroup"><label>Lane</label><select id="b_lane"><option value="">All</option></select></div>
+    <div class="fgroup"><label>Revenue Month</label><select id="b_month"><option value="">All</option></select></div>
     <div class="fgroup"><label>Special Containers</label><div class="flags">
       <label><input type="checkbox" name="b_flag" value="AWK">AWK</label>
       <label><input type="checkbox" name="b_flag" value="DG">DG</label>
       <label><input type="checkbox" name="b_flag" value="RF">RF</label>
-      <label><input type="checkbox" name="b_flag" value="BB">BB</label>
     </div></div>
     <div class="fgroup"><label>Deduplicate</label>
       <label style="font-size:13px;display:flex;align-items:center;gap:4px;color:var(--ink);"><input type="checkbox" id="b_dedup">By Target Port</label>
     </div>
     <div class="fgroup"><label>&nbsp;</label><button class="btn-primary" id="browseBtn">Browse</button></div>
   </div>
-  <div class="note">Browse loads the full month shard (a few MB) into your browser, then filters locally. First load per month may take a moment; results are paginated. Tick "By Target Port" to keep one row per container within that month.</div>
+  <div class="note">All filters are optional and combine: pick a Lane to load just that lane's data (one shard), then narrow by VVD / Revenue Month / special flag. If you enter a VVD or pick a month without a Lane, all lanes are loaded (a few MB) and filtered. Tick "By Target Port" to keep one row per container.</div>
 </div>
 
 <div class="progress" id="progress"><div class="bar" id="progressBar"></div></div>
@@ -169,8 +168,8 @@ function fillSelect(id, arr){
 async function init(){
   try{
     MANIFEST = await fetch('manifest.json').then(r=>r.json());
-    fillSelect('b_month', MANIFEST.rev_months);
     fillSelect('b_lane', MANIFEST.lanes);
+    fillSelect('b_month', MANIFEST.rev_months);
   }catch(e){ alert('Failed to load manifest.json: '+e.message); }
 }
 function renderHead(cols){
@@ -193,7 +192,7 @@ function renderPage(){
   const start = (PAGE-1)*PAGE_SIZE;
   const slice = RESULTS.slice(start, start+PAGE_SIZE);
   if(!slice.length){
-    const msg = RESULTS.length===0 ? 'No records yet — run a Container Lookup or Browse by Month.' : 'No matching records on this page.';
+    const msg = RESULTS.length===0 ? 'No records yet — run a Container Lookup or Browse by VVD / Lane.' : 'No matching records on this page.';
     body.innerHTML = `<tr><td colspan="${cols.length}" class="empty">${msg}</td></tr>`;
   } else {
     body.innerHTML = slice.map(r=>{
@@ -274,31 +273,52 @@ function dedup(rows){
 
 async function doBrowse(){
   MODE='browse';
-  const m = document.getElementById('b_month').value;
-  if(!m){ alert('Please select a Revenue Month first.'); return; }
-  setBusy('Loading month shard '+m+' …');
-  showProgress(0.15);
-  let data;
-  try{ data = await fetchJson(MANIFEST.month_files[m]); }
-  catch(e){ showProgress(null); setBusy('Failed to load month shard: '+e.message, true); return; }
-  showProgress(1);
-  let rows = data.rows.map(r=>{ const o={}; data.cols.forEach((c,i)=>o[c]=r[i]); markDQ(o); return o; });
-  const vvd = document.getElementById('b_vvd').value.trim().toUpperCase();
   const lane = document.getElementById('b_lane').value;
+  const vvd = document.getElementById('b_vvd').value.trim().toUpperCase();
+  const month = document.getElementById('b_month').value;
   const flags = [...document.querySelectorAll('input[name=b_flag]:checked')].map(c=>c.value.toLowerCase());
+  if(!lane && !vvd && !month && !flags.length){
+    alert('Please select a Lane and/or enter a VVD / Revenue Month (or pick a special-flag) to browse.');
+    return;
+  }
+  const deduped = document.getElementById('b_dedup').checked;
+  let rows = [];
+  if(lane){
+    // Lane chosen -> load just that one lane shard (fast).
+    setBusy('Loading lane "'+lane+'" …');
+    showProgress(0.15);
+    let data;
+    try{ data = await fetchJson(MANIFEST.lane_files[lane]); }
+    catch(e){ showProgress(null); setBusy('Failed to load lane shard: '+e.message, true); return; }
+    showProgress(1);
+    rows = data.rows.map(r=>{ const o={}; data.cols.forEach((c,i)=>o[c]=r[i]); markDQ(o); return o; });
+  } else {
+    // VVD-only / month-only / flag-only -> load every lane shard, then filter locally.
+    setBusy('Loading all lanes for filter ('+MANIFEST.lanes.length+' shards)…');
+    showProgress(0);
+    let done = 0;
+    for(const ln of MANIFEST.lanes){
+      try{
+        const data = await fetchJson(MANIFEST.lane_files[ln]);
+        data.rows.forEach(r=>{ const o={}; data.cols.forEach((c,i)=>o[c]=r[i]); markDQ(o); rows.push(o); });
+      }catch(e){ console.warn('lane shard fail', ln, e); }
+      done++; showProgress(done/MANIFEST.lanes.length);
+    }
+    showProgress(1);
+  }
+  // Apply VVD / Revenue Month / special-flag filters (all optional).
   rows = rows.filter(r=>{
     if(vvd && !(r.vvd||'').toUpperCase().includes(vvd)) return false;
-    if(lane && r.lane!==lane) return false;
+    if(month && r.rev_month!==month) return false;
     for(const fl of flags){ if((r[fl]||'')!=='Y') return false; }
     return true;
   });
-  const deduped = document.getElementById('b_dedup').checked;
   if(deduped) rows = dedup(rows);
   RESULTS = rows;
-  CUR_COLS = MANIFEST.month_cols.concat(deduped ? ['mismatch'] : []).concat(['dq']);
+  CUR_COLS = MANIFEST.lane_cols.concat(deduped ? ['mismatch'] : []).concat(['dq']);
   PAGE = 1;
   showProgress(null);
-  setBusy(`Month ${m}: ${rows.length.toLocaleString()} record(s) after filter.`);
+  setBusy(`${rows.length.toLocaleString()} record(s) after filter.`);
   renderPage();
 }
 
