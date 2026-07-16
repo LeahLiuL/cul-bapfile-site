@@ -138,6 +138,32 @@ tbody tr:hover{background:#eff6ff;}
   .toolbar{flex-direction:column;align-items:flex-start;} .exptools{width:100%;}
   textarea{font-size:14px;}
 }
+
+/* ---------- browse extra filters (POL/POD multi-select) ---------- */
+.browse-filters{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px 18px;margin-bottom:14px;box-shadow:var(--shadow);}
+.bf-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:12px;}
+.bf-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.mf{border:1px solid var(--line);border-radius:11px;padding:12px;background:#fbfcfe;}
+.mf-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.mf-head > span:first-child{font-size:13px;font-weight:700;}
+.mf-count{font-size:11px;color:var(--muted);font-weight:500;margin-left:4px;}
+.mf-acts a{font-size:11.5px;color:var(--brand2);cursor:pointer;margin-left:10px;font-weight:600;}
+.mf-acts a:hover{text-decoration:underline;}
+.mf-search{width:100%;height:34px;margin-bottom:8px;}
+.mf-list{max-height:200px;overflow:auto;border-top:1px solid var(--line);padding-top:6px;}
+.mf-item{display:flex;align-items:center;gap:8px;font-size:13px;padding:4px 6px;border-radius:7px;cursor:pointer;}
+.mf-item:hover{background:#eff6ff;}
+.mf-item input{width:16px;height:16px;min-width:0;accent-color:var(--brand2);cursor:pointer;flex:none;}
+.mf-code{font-family:ui-monospace,Consolas,monospace;letter-spacing:.5px;font-weight:600;color:#334155;}
+
+/* ---------- sortable header ---------- */
+th.sortable{cursor:pointer;user-select:none;white-space:nowrap;}
+th.sortable:hover{background:#eef2ff;color:var(--brand);}
+th.sortable.sorted{color:var(--brand);}
+th .arr{font-size:10px;margin-left:3px;opacity:.6;}
+th.sortable.sorted .arr{opacity:1;}
+@media(max-width:680px){ .bf-grid{grid-template-columns:1fr;} }
 </style>
 </head>
 <body>
@@ -216,6 +242,25 @@ tbody tr:hover{background:#eff6ff;}
   </div>
 
   <div class="progress" id="progress"><div class="bar" id="progressBar"></div></div>
+
+  <div id="browseFilters" class="browse-filters" style="display:none;">
+    <div class="bf-title">按 POL / POD 筛选展示（多选 · 在已加载结果内保留勾选的港口，未勾选的将被隐藏）</div>
+    <div class="bf-grid">
+      <div class="mf">
+        <div class="mf-head"><span>POL <span id="polCount" class="mf-count"></span></span>
+          <span class="mf-acts"><a id="polAll">全选</a><a id="polClear">清空</a></span></div>
+        <input id="polSearch" class="mf-search" placeholder="搜索 POL…">
+        <div id="polList" class="mf-list"></div>
+      </div>
+      <div class="mf">
+        <div class="mf-head"><span>POD <span id="podCount" class="mf-count"></span></span>
+          <span class="mf-acts"><a id="podAll">全选</a><a id="podClear">清空</a></span></div>
+        <input id="podSearch" class="mf-search" placeholder="搜索 POD…">
+        <div id="podList" class="mf-list"></div>
+      </div>
+    </div>
+  </div>
+
   <div class="toolbar">
     <div class="total">Records: <b id="total">0</b></div>
     <div class="total" id="pginfo"></div>
@@ -258,6 +303,9 @@ function isDirty(r){
 }
 function markDQ(r){ r.dq=isDirty(r)?'Y':''; return r; }
 let MANIFEST=null, RESULTS=[], PAGE=1, PAGE_SIZE=100, MODE='lookup', CUR_COLS=[];
+// POL/POD multi-select + column sorting state
+let BASE_ROWS=[], POL_SEL=new Set(), POD_SEL=new Set(), POL_OPTS=[], POD_OPTS=[];
+let SORT={key:null, dir:1};
 
 // Fetch a shard. Shards are stored gzip-compressed; if a CDN auto-decompresses
 // them (Content-Encoding: gzip), the fallback path handles plain JSON.
@@ -296,7 +344,15 @@ async function init(){
   }catch(e){ alert('Failed to load manifest.json: '+e.message); }
 }
 function renderHead(cols){
-  document.getElementById('head').innerHTML = cols.map(c=>`<th>${LABELS[c]||c}</th>`).join('');
+  document.getElementById('head').innerHTML = cols.map(c=>{
+    const sorted = SORT.key===c;
+    const arr = sorted ? (SORT.dir>0 ? ' ▲' : ' ▼') : '';
+    return `<th data-col="${c}" class="sortable${sorted?' sorted':''}">${LABELS[c]||c}<span class="arr">${arr}</span></th>`;
+  }).join('');
+  cols.forEach(c=>{
+    const th = document.querySelector('#head th[data-col="'+c+'"]');
+    if(th) th.onclick = ()=>sortBy(c);
+  });
 }
 function fmtW(v){ const n=parseFloat(v); return isNaN(n)?(v||''):n.toLocaleString(undefined,{maximumFractionDigits:2}); }
 function flagCell(v){ return (v==='Y'||v==='y')?'<span class="flagY">Y</span>':(v||''); }
@@ -378,7 +434,9 @@ async function doLookup(){
   let note = `Matched ${RESULTS.length} / ${nums.length}.`;
   if(notFound.length) note += ` Not found: ${notFound.length} (e.g. ${notFound.slice(0,5).join(', ')}${notFound.length>5?'…':''})`;
   setBusy(note);
-  renderPage();
+  BASE_ROWS = RESULTS;
+  document.getElementById('browseFilters').style.display='none';
+  recompute();
 }
 
 function dedup(rows){
@@ -437,13 +495,75 @@ async function doBrowse(){
     return true;
   });
   if(deduped) rows = dedup(rows);
-  RESULTS = rows;
+  BASE_ROWS = rows;
   CUR_COLS = MANIFEST.lane_cols.concat(deduped ? ['mismatch'] : []).concat(['dq']);
   PAGE = 1;
   showProgress(null);
-  setBusy(`${rows.length.toLocaleString()} record(s) after filter.`);
+  if(rows.length){
+    buildPolPodOptions(rows);
+    setBusy(`${rows.length.toLocaleString()} record(s) loaded. Refine by POL / POD, or click a column header to sort.`);
+  } else {
+    document.getElementById('browseFilters').style.display='none';
+    setBusy('No records matched the current filters.');
+  }
+  recompute();
+}
+
+/* ---------- POL/POD multi-select + column sorting ---------- */
+function cmp(a,b,col){
+  let x=a[col], y=b[col];
+  if(col==='weight'){ x=parseFloat(x)||0; y=parseFloat(y)||0; return x-y; }
+  if(['awk','dg','rf','dq','mismatch'].includes(col)){ x=(x==='Y'||x==='y')?1:0; y=(y==='Y'||y==='y')?1:0; return x-y; }
+  x=(x==null?'':String(x)).toUpperCase();
+  y=(y==null?'':String(y)).toUpperCase();
+  return x<y ? -1 : (x>y ? 1 : 0);
+}
+function recompute(){
+  let rows = BASE_ROWS;
+  if(MODE==='browse'){
+    rows = rows.filter(r=>POL_SEL.has((r.pol||'').trim()) && POD_SEL.has((r.pod||'').trim()));
+  }
+  if(SORT.key){
+    const k=SORT.key, d=SORT.dir;
+    rows = rows.slice().sort((a,b)=>cmp(a,b,k)*d);
+  }
+  RESULTS = rows;
+  PAGE = 1;
   renderPage();
 }
+function sortBy(col){
+  if(SORT.key===col) SORT.dir *= -1;
+  else { SORT.key=col; SORT.dir=1; }
+  recompute();
+}
+function buildPolPodOptions(rows){
+  const pc={}, dc={};
+  rows.forEach(r=>{
+    const p=(r.pol||'').trim(); if(p) pc[p]=(pc[p]||0)+1;
+    const q=(r.pod||'').trim(); if(q) dc[q]=(dc[q]||0)+1;
+  });
+  POL_OPTS = Object.keys(pc).sort((a,b)=>pc[b]-pc[a]||a.localeCompare(b));
+  POD_OPTS = Object.keys(dc).sort((a,b)=>dc[b]-dc[a]||a.localeCompare(b));
+  POL_SEL = new Set(POL_OPTS);
+  POD_SEL = new Set(POD_OPTS);
+  renderPolList(''); renderPodList('');
+  refreshPolCount(); refreshPodCount();
+  document.getElementById('browseFilters').style.display='';
+}
+function renderPolList(q){
+  const list=document.getElementById('polList');
+  const f=q?POL_OPTS.filter(p=>p.toLowerCase().includes(q.toLowerCase())):POL_OPTS;
+  list.innerHTML = f.length ? f.map(p=>`<label class="mf-item"><input type="checkbox" data-pol="${p}" ${POL_SEL.has(p)?'checked':''}> <span class="mf-code">${p}</span></label>`).join('')
+                        : '<div class="mf-item" style="color:var(--muted)">无匹配</div>';
+}
+function renderPodList(q){
+  const list=document.getElementById('podList');
+  const f=q?POD_OPTS.filter(p=>p.toLowerCase().includes(q.toLowerCase())):POD_OPTS;
+  list.innerHTML = f.length ? f.map(p=>`<label class="mf-item"><input type="checkbox" data-pod="${p}" ${POD_SEL.has(p)?'checked':''}> <span class="mf-code">${p}</span></label>`).join('')
+                        : '<div class="mf-item" style="color:var(--muted)">无匹配</div>';
+}
+function refreshPolCount(){ document.getElementById('polCount').textContent = `(${POL_OPTS.length} 个，已选 ${POL_SEL.size})`; }
+function refreshPodCount(){ document.getElementById('podCount').textContent = `(${POD_OPTS.length} 个，已选 ${POD_SEL.size})`; }
 
 /* ---------- export current results ---------- */
 function download(content, name, type){
@@ -491,6 +611,7 @@ document.getElementById('tabLookup').onclick = ()=>{
   document.getElementById('panelLookup').style.display='';
   document.getElementById('panelBrowse').style.display='none';
   MODE='lookup';
+  document.getElementById('browseFilters').style.display='none';
 };
 document.getElementById('tabBrowse').onclick = ()=>{
   document.getElementById('tabBrowse').classList.add('active');
@@ -498,6 +619,7 @@ document.getElementById('tabBrowse').onclick = ()=>{
   document.getElementById('panelBrowse').style.display='';
   document.getElementById('panelLookup').style.display='none';
   MODE='browse';
+  if(POL_OPTS.length) document.getElementById('browseFilters').style.display='';
 };
 document.getElementById('lookupBtn').onclick = doLookup;
 document.getElementById('lookupClear').onclick = ()=>{ document.getElementById('contlist').value=''; RESULTS=[]; renderPage(); setBusy(''); showProgress(null); };
@@ -507,6 +629,28 @@ document.getElementById('next').onclick = ()=>{ PAGE++; renderPage(); };
 document.getElementById('psize').onchange = e=>{ PAGE_SIZE=parseInt(e.target.value); PAGE=1; renderPage(); };
 document.getElementById('expCsv').onclick = ()=>exportData('csv');
 document.getElementById('expXls').onclick = ()=>exportData('xls');
+
+/* POL/POD multi-select events */
+document.getElementById('polList').addEventListener('change', e=>{
+  if(e.target && e.target.matches('input[type=checkbox]')){
+    const p=e.target.getAttribute('data-pol');
+    if(e.target.checked) POL_SEL.add(p); else POL_SEL.delete(p);
+    refreshPolCount(); recompute();
+  }
+});
+document.getElementById('podList').addEventListener('change', e=>{
+  if(e.target && e.target.matches('input[type=checkbox]')){
+    const p=e.target.getAttribute('data-pod');
+    if(e.target.checked) POD_SEL.add(p); else POD_SEL.delete(p);
+    refreshPodCount(); recompute();
+  }
+});
+document.getElementById('polSearch').addEventListener('input', e=>renderPolList(e.target.value));
+document.getElementById('podSearch').addEventListener('input', e=>renderPodList(e.target.value));
+document.getElementById('polAll').onclick = ()=>{ POL_SEL=new Set(POL_OPTS); renderPolList(document.getElementById('polSearch').value); refreshPolCount(); recompute(); };
+document.getElementById('polClear').onclick = ()=>{ POL_SEL=new Set(); renderPolList(document.getElementById('polSearch').value); refreshPolCount(); recompute(); };
+document.getElementById('podAll').onclick = ()=>{ POD_SEL=new Set(POD_OPTS); renderPodList(document.getElementById('podSearch').value); refreshPodCount(); recompute(); };
+document.getElementById('podClear').onclick = ()=>{ POD_SEL=new Set(); renderPodList(document.getElementById('podSearch').value); refreshPodCount(); recompute(); };
 
 init();
 renderPage();

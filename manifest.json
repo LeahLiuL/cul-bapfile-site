@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-15 22:57:37",
+ "generated_at": "2026-07-15 14:32:09",
  "base_cols": [
   "vvd",
   "lane",
@@ -50,13 +50,6 @@
   "cont_opr",
   "rev_month",
   "target_port"
- ],
- "rev_months": [
-  "2026-04",
-  "2026-05",
-  "2026-06",
-  "2026-07",
-  "2026-08"
  ],
  "lanes": [
   "AM1",
@@ -1995,5 +1988,12 @@
   "WAT": "data/lane/WAT.json.gz"
  },
  "total_containers": 274821,
- "total_rows": 657956
+ "total_rows": 657956,
+ "rev_months": [
+  "2026-04",
+  "2026-05",
+  "2026-06",
+  "2026-07",
+  "2026-08"
+ ]
 }
