@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-20 22:59:08",
+ "generated_at": "2026-07-21 22:59:38",
  "base_cols": [
   "vvd",
   "lane",
@@ -77,6 +77,7 @@
   "IQH",
   "JCT",
   "JPS",
+  "KCI",
   "KHX",
   "LHT",
   "ME1",
@@ -103,6 +104,8 @@
   "WAT"
  ],
  "cont_prefixes": [
+  "9513",
+  "9514",
   "AACU",
   "AAFU",
   "AAIU",
@@ -408,6 +411,7 @@
   "GLQU",
   "GMCU",
   "GMOU",
+  "GMTU",
   "GNLU",
   "GOAU",
   "GOSU",
@@ -1042,6 +1046,8 @@
   "ZYEU"
  ],
  "cont_files": {
+  "9513": "data/cont/9513.json.gz",
+  "9514": "data/cont/9514.json.gz",
   "AACU": "data/cont/AACU.json.gz",
   "AAFU": "data/cont/AAFU.json.gz",
   "AAIU": "data/cont/AAIU.json.gz",
@@ -1347,6 +1353,7 @@
   "GLQU": "data/cont/GLQU.json.gz",
   "GMCU": "data/cont/GMCU.json.gz",
   "GMOU": "data/cont/GMOU.json.gz",
+  "GMTU": "data/cont/GMTU.json.gz",
   "GNLU": "data/cont/GNLU.json.gz",
   "GOAU": "data/cont/GOAU.json.gz",
   "GOSU": "data/cont/GOSU.json.gz",
@@ -1999,6 +2006,7 @@
   "IQH": "data/lane/IQH.json.gz",
   "JCT": "data/lane/JCT.json.gz",
   "JPS": "data/lane/JPS.json.gz",
+  "KCI": "data/lane/KCI.json.gz",
   "KHX": "data/lane/KHX.json.gz",
   "LHT": "data/lane/LHT.json.gz",
   "ME1": "data/lane/ME1.json.gz",
@@ -2024,6 +2032,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 280651,
- "total_rows": 690003
+ "total_containers": 282486,
+ "total_rows": 696963
 }
