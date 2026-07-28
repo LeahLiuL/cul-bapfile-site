@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-07-27 22:58:15",
+ "generated_at": "2026-07-28 22:57:56",
  "base_cols": [
   "vvd",
   "lane",
@@ -1042,6 +1042,7 @@
   "YTSU",
   "YTYU",
   "YXCU",
+  "YYCU",
   "ZCLU",
   "ZCSU",
   "ZDCU",
@@ -1999,6 +2000,7 @@
   "YTSU": "data/cont/YTSU.json.gz",
   "YTYU": "data/cont/YTYU.json.gz",
   "YXCU": "data/cont/YXCU.json.gz",
+  "YYCU": "data/cont/YYCU.json.gz",
   "ZCLU": "data/cont/ZCLU.json.gz",
   "ZCSU": "data/cont/ZCSU.json.gz",
   "ZDCU": "data/cont/ZDCU.json.gz",
@@ -2063,6 +2065,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 290881,
- "total_rows": 734500
+ "total_containers": 293967,
+ "total_rows": 745737
 }
