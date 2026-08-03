@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-01 23:29:37",
+ "generated_at": "2026-08-03 23:00:27",
  "base_cols": [
   "vvd",
   "lane",
@@ -851,6 +851,7 @@
   "SLDU",
   "SLEU",
   "SLJU",
+  "SLNU",
   "SLOU",
   "SLPU",
   "SLSU",
@@ -1818,6 +1819,7 @@
   "SLDU": "data/cont/SLDU.json.gz",
   "SLEU": "data/cont/SLEU.json.gz",
   "SLJU": "data/cont/SLJU.json.gz",
+  "SLNU": "data/cont/SLNU.json.gz",
   "SLOU": "data/cont/SLOU.json.gz",
   "SLPU": "data/cont/SLPU.json.gz",
   "SLSU": "data/cont/SLSU.json.gz",
@@ -2046,6 +2048,6 @@
   "2026-08": "data/month/2026-08.json.gz",
   "2026-09": "data/month/2026-09.json.gz"
  },
- "total_containers": 303014,
- "total_rows": 781016
+ "total_containers": 303950,
+ "total_rows": 789002
 }
