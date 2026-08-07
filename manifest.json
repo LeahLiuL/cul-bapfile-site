@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-04 23:02:02",
+ "generated_at": "2026-08-07 23:13:06",
  "base_cols": [
   "vvd",
   "lane",
@@ -447,6 +447,7 @@
   "HCHU",
   "HCIU",
   "HCOU",
+  "HCPU",
   "HDCU",
   "HDFU",
   "HDHU",
@@ -1415,6 +1416,7 @@
   "HCHU": "data/cont/HCHU.json.gz",
   "HCIU": "data/cont/HCIU.json.gz",
   "HCOU": "data/cont/HCOU.json.gz",
+  "HCPU": "data/cont/HCPU.json.gz",
   "HDCU": "data/cont/HDCU.json.gz",
   "HDFU": "data/cont/HDFU.json.gz",
   "HDHU": "data/cont/HDHU.json.gz",
@@ -2048,6 +2050,6 @@
   "2026-08": "data/month/2026-08.json.gz",
   "2026-09": "data/month/2026-09.json.gz"
  },
- "total_containers": 303950,
- "total_rows": 789002
+ "total_containers": 308618,
+ "total_rows": 814689
 }
