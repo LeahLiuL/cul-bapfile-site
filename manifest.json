@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-07 23:13:06",
+ "generated_at": "2026-08-08 22:59:07",
  "base_cols": [
   "vvd",
   "lane",
@@ -275,6 +275,8 @@
   "CTLU",
   "CTPU",
   "CULU",
+  "CUSU",
+  "CUVU",
   "CVIU",
   "CVTU",
   "CWFU",
@@ -1244,6 +1246,8 @@
   "CTLU": "data/cont/CTLU.json.gz",
   "CTPU": "data/cont/CTPU.json.gz",
   "CULU": "data/cont/CULU.json.gz",
+  "CUSU": "data/cont/CUSU.json.gz",
+  "CUVU": "data/cont/CUVU.json.gz",
   "CVIU": "data/cont/CVIU.json.gz",
   "CVTU": "data/cont/CVTU.json.gz",
   "CWFU": "data/cont/CWFU.json.gz",
@@ -2050,6 +2054,6 @@
   "2026-08": "data/month/2026-08.json.gz",
   "2026-09": "data/month/2026-09.json.gz"
  },
- "total_containers": 308618,
- "total_rows": 814689
+ "total_containers": 308769,
+ "total_rows": 815824
 }
