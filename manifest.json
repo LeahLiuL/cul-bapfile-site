@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-14 22:59:23",
+ "generated_at": "2026-08-15 22:59:17",
  "base_cols": [
   "vvd",
   "lane",
@@ -129,6 +129,7 @@
   "AKJU",
   "AKKU",
   "AKLU",
+  "ALDU",
   "ALLU",
   "ALMU",
   "ALRU",
@@ -152,6 +153,7 @@
   "ARKU",
   "ASCU",
   "ASHU",
+  "ASIU",
   "ASKU",
   "ASLU",
   "ASNT",
@@ -1114,6 +1116,7 @@
   "AKJU": "data/cont/AKJU.json.gz",
   "AKKU": "data/cont/AKKU.json.gz",
   "AKLU": "data/cont/AKLU.json.gz",
+  "ALDU": "data/cont/ALDU.json.gz",
   "ALLU": "data/cont/ALLU.json.gz",
   "ALMU": "data/cont/ALMU.json.gz",
   "ALRU": "data/cont/ALRU.json.gz",
@@ -1137,6 +1140,7 @@
   "ARKU": "data/cont/ARKU.json.gz",
   "ASCU": "data/cont/ASCU.json.gz",
   "ASHU": "data/cont/ASHU.json.gz",
+  "ASIU": "data/cont/ASIU.json.gz",
   "ASKU": "data/cont/ASKU.json.gz",
   "ASLU": "data/cont/ASLU.json.gz",
   "ASNT": "data/cont/ASNT.json.gz",
@@ -2082,6 +2086,6 @@
   "2026-08": "data/month/2026-08.json.gz",
   "2026-09": "data/month/2026-09.json.gz"
  },
- "total_containers": 316796,
- "total_rows": 852893
+ "total_containers": 319047,
+ "total_rows": 859165
 }
