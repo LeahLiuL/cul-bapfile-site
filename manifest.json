@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-15 22:59:17",
+ "generated_at": "2026-08-16 23:00:04",
  "base_cols": [
   "vvd",
   "lane",
@@ -829,6 +829,7 @@
   "SAPU",
   "SAXU",
   "SBXU",
+  "SCCU",
   "SCNU",
   "SCSU",
   "SCZU",
@@ -1066,6 +1067,7 @@
   "YHLU",
   "YMLU",
   "YMMU",
+  "YMSU",
   "YOIU",
   "YOLU",
   "YTSU",
@@ -1816,6 +1818,7 @@
   "SAPU": "data/cont/SAPU.json.gz",
   "SAXU": "data/cont/SAXU.json.gz",
   "SBXU": "data/cont/SBXU.json.gz",
+  "SCCU": "data/cont/SCCU.json.gz",
   "SCNU": "data/cont/SCNU.json.gz",
   "SCSU": "data/cont/SCSU.json.gz",
   "SCZU": "data/cont/SCZU.json.gz",
@@ -2053,6 +2056,7 @@
   "YHLU": "data/cont/YHLU.json.gz",
   "YMLU": "data/cont/YMLU.json.gz",
   "YMMU": "data/cont/YMMU.json.gz",
+  "YMSU": "data/cont/YMSU.json.gz",
   "YOIU": "data/cont/YOIU.json.gz",
   "YOLU": "data/cont/YOLU.json.gz",
   "YTSU": "data/cont/YTSU.json.gz",
@@ -2086,6 +2090,6 @@
   "2026-08": "data/month/2026-08.json.gz",
   "2026-09": "data/month/2026-09.json.gz"
  },
- "total_containers": 319047,
- "total_rows": 859165
+ "total_containers": 320764,
+ "total_rows": 864815
 }
