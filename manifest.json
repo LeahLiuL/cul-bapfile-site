@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-18 23:00:04",
+ "generated_at": "2026-08-19 12:03:17",
  "base_cols": [
   "vvd",
   "lane",
@@ -935,6 +935,7 @@
   "TCLU",
   "TCNU",
   "TCVU",
+  "TDAU",
   "TDLU",
   "TDOU",
   "TDRU",
@@ -1929,6 +1930,7 @@
   "TCLU": "data/cont/TCLU.json.gz",
   "TCNU": "data/cont/TCNU.json.gz",
   "TCVU": "data/cont/TCVU.json.gz",
+  "TDAU": "data/cont/TDAU.json.gz",
   "TDLU": "data/cont/TDLU.json.gz",
   "TDOU": "data/cont/TDOU.json.gz",
   "TDRU": "data/cont/TDRU.json.gz",
@@ -2100,6 +2102,6 @@
   "2026-08": "data/month/2026-08.json.gz",
   "2026-09": "data/month/2026-09.json.gz"
  },
- "total_containers": 325168,
- "total_rows": 882267
+ "total_containers": 325424,
+ "total_rows": 885007
 }
