@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-25 23:04:49",
+ "generated_at": "2026-08-26 23:02:40",
  "base_cols": [
   "vvd",
   "lane",
@@ -211,6 +211,7 @@
   "BRFU",
   "BRKU",
   "BRTU",
+  "BRXU",
   "BSCU",
   "BSIU",
   "BSLU",
@@ -1219,6 +1220,7 @@
   "BRFU": "data/cont/BRFU.json.gz",
   "BRKU": "data/cont/BRKU.json.gz",
   "BRTU": "data/cont/BRTU.json.gz",
+  "BRXU": "data/cont/BRXU.json.gz",
   "BSCU": "data/cont/BSCU.json.gz",
   "BSIU": "data/cont/BSIU.json.gz",
   "BSLU": "data/cont/BSLU.json.gz",
@@ -2190,6 +2192,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 336456,
- "total_rows": 925777
+ "total_containers": 338368,
+ "total_rows": 931290
 }
