@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-28 23:05:39",
+ "generated_at": "2026-08-30 23:04:48",
  "base_cols": [
   "vvd",
   "lane",
@@ -387,6 +387,7 @@
   "EXXU",
   "FAAU",
   "FANU",
+  "FATU",
   "FBIU",
   "FBLU",
   "FBXU",
@@ -603,6 +604,7 @@
   "JXLU",
   "JYGU",
   "JZPU",
+  "KBRU",
   "KCDU",
   "KCSU",
   "KDCU",
@@ -653,6 +655,7 @@
   "LTCU",
   "LTIU",
   "LTTU",
+  "LULU",
   "LYGU",
   "MAEU",
   "MAGU",
@@ -743,6 +746,7 @@
   "NOKU",
   "NOWU",
   "NPCU",
+  "NPLU",
   "NRSU",
   "NSDU",
   "NSJU",
@@ -1396,6 +1400,7 @@
   "EXXU": "data/cont/EXXU.json.gz",
   "FAAU": "data/cont/FAAU.json.gz",
   "FANU": "data/cont/FANU.json.gz",
+  "FATU": "data/cont/FATU.json.gz",
   "FBIU": "data/cont/FBIU.json.gz",
   "FBLU": "data/cont/FBLU.json.gz",
   "FBXU": "data/cont/FBXU.json.gz",
@@ -1612,6 +1617,7 @@
   "JXLU": "data/cont/JXLU.json.gz",
   "JYGU": "data/cont/JYGU.json.gz",
   "JZPU": "data/cont/JZPU.json.gz",
+  "KBRU": "data/cont/KBRU.json.gz",
   "KCDU": "data/cont/KCDU.json.gz",
   "KCSU": "data/cont/KCSU.json.gz",
   "KDCU": "data/cont/KDCU.json.gz",
@@ -1662,6 +1668,7 @@
   "LTCU": "data/cont/LTCU.json.gz",
   "LTIU": "data/cont/LTIU.json.gz",
   "LTTU": "data/cont/LTTU.json.gz",
+  "LULU": "data/cont/LULU.json.gz",
   "LYGU": "data/cont/LYGU.json.gz",
   "MAEU": "data/cont/MAEU.json.gz",
   "MAGU": "data/cont/MAGU.json.gz",
@@ -1752,6 +1759,7 @@
   "NOKU": "data/cont/NOKU.json.gz",
   "NOWU": "data/cont/NOWU.json.gz",
   "NPCU": "data/cont/NPCU.json.gz",
+  "NPLU": "data/cont/NPLU.json.gz",
   "NRSU": "data/cont/NRSU.json.gz",
   "NSDU": "data/cont/NSDU.json.gz",
   "NSJU": "data/cont/NSJU.json.gz",
@@ -2192,6 +2200,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 339059,
- "total_rows": 940697
+ "total_containers": 340627,
+ "total_rows": 950511
 }
