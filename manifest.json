@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-08-31 23:05:28",
+ "generated_at": "2026-09-01 23:05:38",
  "base_cols": [
   "vvd",
   "lane",
@@ -74,7 +74,8 @@
   "2026-06",
   "2026-07",
   "2026-08",
-  "2026-09"
+  "2026-09",
+  "2026-10"
  ],
  "lanes": [
   "AM1",
@@ -453,6 +454,7 @@
   "GLLU",
   "GLMU",
   "GLQU",
+  "GLXU",
   "GMCU",
   "GMOU",
   "GMTU",
@@ -1470,6 +1472,7 @@
   "GLLU": "data/cont/GLLU.json.gz",
   "GLMU": "data/cont/GLMU.json.gz",
   "GLQU": "data/cont/GLQU.json.gz",
+  "GLXU": "data/cont/GLXU.json.gz",
   "GMCU": "data/cont/GMCU.json.gz",
   "GMOU": "data/cont/GMOU.json.gz",
   "GMTU": "data/cont/GMTU.json.gz",
@@ -2161,7 +2164,8 @@
   "2026-06": "data/month/2026-06.json.gz",
   "2026-07": "data/month/2026-07.json.gz",
   "2026-08": "data/month/2026-08.json.gz",
-  "2026-09": "data/month/2026-09.json.gz"
+  "2026-09": "data/month/2026-09.json.gz",
+  "2026-10": "data/month/2026-10.json.gz"
  },
  "lane_files": {
   "AM1": "data/lane/AM1.json.gz",
@@ -2208,6 +2212,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 342540,
- "total_rows": 954594
+ "total_containers": 343620,
+ "total_rows": 960522
 }
