@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-02 23:33:59",
+ "generated_at": "2026-09-03 23:03:40",
  "base_cols": [
   "vvd",
   "lane",
@@ -364,6 +364,7 @@
   "EGRU",
   "EGSU",
   "EIAU",
+  "EIBU",
   "EIFU",
   "EINU",
   "EISU",
@@ -405,6 +406,7 @@
   "FDRU",
   "FESU",
   "FFAU",
+  "FFSU",
   "FFXU",
   "FITU",
   "FJKU",
@@ -795,6 +797,7 @@
   "OWSU",
   "PALU",
   "PASU",
+  "PBKU",
   "PCIU",
   "PCLU",
   "PCOU",
@@ -1385,6 +1388,7 @@
   "EGRU": "data/cont/EGRU.json.gz",
   "EGSU": "data/cont/EGSU.json.gz",
   "EIAU": "data/cont/EIAU.json.gz",
+  "EIBU": "data/cont/EIBU.json.gz",
   "EIFU": "data/cont/EIFU.json.gz",
   "EINU": "data/cont/EINU.json.gz",
   "EISU": "data/cont/EISU.json.gz",
@@ -1426,6 +1430,7 @@
   "FDRU": "data/cont/FDRU.json.gz",
   "FESU": "data/cont/FESU.json.gz",
   "FFAU": "data/cont/FFAU.json.gz",
+  "FFSU": "data/cont/FFSU.json.gz",
   "FFXU": "data/cont/FFXU.json.gz",
   "FITU": "data/cont/FITU.json.gz",
   "FJKU": "data/cont/FJKU.json.gz",
@@ -1816,6 +1821,7 @@
   "OWSU": "data/cont/OWSU.json.gz",
   "PALU": "data/cont/PALU.json.gz",
   "PASU": "data/cont/PASU.json.gz",
+  "PBKU": "data/cont/PBKU.json.gz",
   "PCIU": "data/cont/PCIU.json.gz",
   "PCLU": "data/cont/PCLU.json.gz",
   "PCOU": "data/cont/PCOU.json.gz",
@@ -2218,6 +2224,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 344463,
- "total_rows": 963154
+ "total_containers": 347629,
+ "total_rows": 978643
 }
