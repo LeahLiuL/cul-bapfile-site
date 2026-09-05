@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-04 23:08:13",
+ "generated_at": "2026-09-05 23:12:34",
  "base_cols": [
   "vvd",
   "lane",
@@ -2224,6 +2224,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 348322,
- "total_rows": 981646
+ "total_containers": 349284,
+ "total_rows": 985839
 }
