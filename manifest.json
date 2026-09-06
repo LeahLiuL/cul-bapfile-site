@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-05 23:12:34",
+ "generated_at": "2026-09-06 23:04:31",
  "base_cols": [
   "vvd",
   "lane",
@@ -267,6 +267,7 @@
   "CLSU",
   "CMAU",
   "CMCU",
+  "CMNU",
   "CNCU",
   "CNHU",
   "CNIU",
@@ -1291,6 +1292,7 @@
   "CLSU": "data/cont/CLSU.json.gz",
   "CMAU": "data/cont/CMAU.json.gz",
   "CMCU": "data/cont/CMCU.json.gz",
+  "CMNU": "data/cont/CMNU.json.gz",
   "CNCU": "data/cont/CNCU.json.gz",
   "CNHU": "data/cont/CNHU.json.gz",
   "CNIU": "data/cont/CNIU.json.gz",
@@ -2224,6 +2226,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 349284,
- "total_rows": 985839
+ "total_containers": 350107,
+ "total_rows": 995185
 }
