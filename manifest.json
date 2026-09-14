@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-13 23:04:28",
+ "generated_at": "2026-09-14 23:05:18",
  "base_cols": [
   "vvd",
   "lane",
@@ -299,6 +299,7 @@
   "CSOU",
   "CSPU",
   "CSSU",
+  "CSTU",
   "CSUU",
   "CSYU",
   "CTGU",
@@ -909,6 +910,7 @@
   "SHAU",
   "SHCU",
   "SHFU",
+  "SHKU",
   "SHPU",
   "SHSU",
   "SICU",
@@ -1339,6 +1341,7 @@
   "CSOU": "data/cont/CSOU.json.gz",
   "CSPU": "data/cont/CSPU.json.gz",
   "CSSU": "data/cont/CSSU.json.gz",
+  "CSTU": "data/cont/CSTU.json.gz",
   "CSUU": "data/cont/CSUU.json.gz",
   "CSYU": "data/cont/CSYU.json.gz",
   "CTGU": "data/cont/CTGU.json.gz",
@@ -1949,6 +1952,7 @@
   "SHAU": "data/cont/SHAU.json.gz",
   "SHCU": "data/cont/SHCU.json.gz",
   "SHFU": "data/cont/SHFU.json.gz",
+  "SHKU": "data/cont/SHKU.json.gz",
   "SHPU": "data/cont/SHPU.json.gz",
   "SHSU": "data/cont/SHSU.json.gz",
   "SICU": "data/cont/SICU.json.gz",
@@ -2256,6 +2260,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 359516,
- "total_rows": 1038442
+ "total_containers": 361985,
+ "total_rows": 1044457
 }
