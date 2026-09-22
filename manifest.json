@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-21 23:10:58",
+ "generated_at": "2026-09-22 23:13:56",
  "base_cols": [
   "vvd",
   "lane",
@@ -85,6 +85,7 @@
   "CGX",
   "CH1",
   "CI3",
+  "CN1",
   "CP8",
   "CST",
   "CSX",
@@ -416,6 +417,7 @@
   "FFAU",
   "FFSU",
   "FFXU",
+  "FIIU",
   "FITU",
   "FJKU",
   "FKJU",
@@ -445,6 +447,7 @@
   "FWUU",
   "FXLU",
   "FYCU",
+  "GAEU",
   "GAOU",
   "GATU",
   "GAWU",
@@ -813,6 +816,8 @@
   "OTPU",
   "OVLU",
   "OWSU",
+  "P333",
+  "P334",
   "PALU",
   "PASU",
   "PBKU",
@@ -1468,6 +1473,7 @@
   "FFAU": "data/cont/FFAU.json.gz",
   "FFSU": "data/cont/FFSU.json.gz",
   "FFXU": "data/cont/FFXU.json.gz",
+  "FIIU": "data/cont/FIIU.json.gz",
   "FITU": "data/cont/FITU.json.gz",
   "FJKU": "data/cont/FJKU.json.gz",
   "FKJU": "data/cont/FKJU.json.gz",
@@ -1497,6 +1503,7 @@
   "FWUU": "data/cont/FWUU.json.gz",
   "FXLU": "data/cont/FXLU.json.gz",
   "FYCU": "data/cont/FYCU.json.gz",
+  "GAEU": "data/cont/GAEU.json.gz",
   "GAOU": "data/cont/GAOU.json.gz",
   "GATU": "data/cont/GATU.json.gz",
   "GAWU": "data/cont/GAWU.json.gz",
@@ -1865,6 +1872,8 @@
   "OTPU": "data/cont/OTPU.json.gz",
   "OVLU": "data/cont/OVLU.json.gz",
   "OWSU": "data/cont/OWSU.json.gz",
+  "P333": "data/cont/P333.json.gz",
+  "P334": "data/cont/P334.json.gz",
   "PALU": "data/cont/PALU.json.gz",
   "PASU": "data/cont/PASU.json.gz",
   "PBKU": "data/cont/PBKU.json.gz",
@@ -2243,6 +2252,7 @@
   "CGX": "data/lane/CGX.json.gz",
   "CH1": "data/lane/CH1.json.gz",
   "CI3": "data/lane/CI3.json.gz",
+  "CN1": "data/lane/CN1.json.gz",
   "CP8": "data/lane/CP8.json.gz",
   "CST": "data/lane/CST.json.gz",
   "CSX": "data/lane/CSX.json.gz",
@@ -2280,6 +2290,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 376853,
- "total_rows": 1103363
+ "total_containers": 379495,
+ "total_rows": 1113964
 }
