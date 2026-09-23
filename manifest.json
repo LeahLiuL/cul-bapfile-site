@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-22 23:13:56",
+ "generated_at": "2026-09-23 23:15:34",
  "base_cols": [
   "vvd",
   "lane",
@@ -213,6 +213,7 @@
   "BPIU",
   "BPTU",
   "BRFU",
+  "BRIU",
   "BRKU",
   "BRTU",
   "BRXU",
@@ -1269,6 +1270,7 @@
   "BPIU": "data/cont/BPIU.json.gz",
   "BPTU": "data/cont/BPTU.json.gz",
   "BRFU": "data/cont/BRFU.json.gz",
+  "BRIU": "data/cont/BRIU.json.gz",
   "BRKU": "data/cont/BRKU.json.gz",
   "BRTU": "data/cont/BRTU.json.gz",
   "BRXU": "data/cont/BRXU.json.gz",
@@ -2290,6 +2292,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 379495,
- "total_rows": 1113964
+ "total_containers": 380993,
+ "total_rows": 1117561
 }
