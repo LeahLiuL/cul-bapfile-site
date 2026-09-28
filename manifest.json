@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-27 23:24:02",
+ "generated_at": "2026-09-28 23:13:45",
  "base_cols": [
   "vvd",
   "lane",
@@ -282,6 +282,7 @@
   "CODU",
   "COEU",
   "COIU",
+  "COKU",
   "COPU",
   "COSU",
   "COTU",
@@ -383,6 +384,7 @@
   "EITU",
   "ELCU",
   "ELNU",
+  "EMBU",
   "EMCU",
   "EMJU",
   "EMKU",
@@ -1344,6 +1346,7 @@
   "CODU": "data/cont/CODU.json.gz",
   "COEU": "data/cont/COEU.json.gz",
   "COIU": "data/cont/COIU.json.gz",
+  "COKU": "data/cont/COKU.json.gz",
   "COPU": "data/cont/COPU.json.gz",
   "COSU": "data/cont/COSU.json.gz",
   "COTU": "data/cont/COTU.json.gz",
@@ -1445,6 +1448,7 @@
   "EITU": "data/cont/EITU.json.gz",
   "ELCU": "data/cont/ELCU.json.gz",
   "ELNU": "data/cont/ELNU.json.gz",
+  "EMBU": "data/cont/EMBU.json.gz",
   "EMCU": "data/cont/EMCU.json.gz",
   "EMJU": "data/cont/EMJU.json.gz",
   "EMKU": "data/cont/EMKU.json.gz",
@@ -2302,6 +2306,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 385175,
- "total_rows": 1137536
+ "total_containers": 387556,
+ "total_rows": 1144477
 }
