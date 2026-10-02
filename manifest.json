@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-01 23:09:11",
+ "generated_at": "2026-10-02 23:03:58",
  "base_cols": [
   "vvd",
   "lane",
@@ -101,6 +101,7 @@
   "KHX",
   "LHT",
   "ME1",
+  "ME3",
   "MES",
   "MFX",
   "MGA",
@@ -245,6 +246,7 @@
   "CBXU",
   "CCCU",
   "CCEU",
+  "CCIU",
   "CCLU",
   "CCSU",
   "CCUU",
@@ -526,6 +528,7 @@
   "HJHU",
   "HJLU",
   "HJMU",
+  "HKLU",
   "HLBU",
   "HLFU",
   "HLHU",
@@ -926,6 +929,7 @@
   "SERU",
   "SFCU",
   "SFLU",
+  "SFMU",
   "SGCU",
   "SGFU",
   "SGLU",
@@ -1315,6 +1319,7 @@
   "CBXU": "data/cont/CBXU.json.gz",
   "CCCU": "data/cont/CCCU.json.gz",
   "CCEU": "data/cont/CCEU.json.gz",
+  "CCIU": "data/cont/CCIU.json.gz",
   "CCLU": "data/cont/CCLU.json.gz",
   "CCSU": "data/cont/CCSU.json.gz",
   "CCUU": "data/cont/CCUU.json.gz",
@@ -1596,6 +1601,7 @@
   "HJHU": "data/cont/HJHU.json.gz",
   "HJLU": "data/cont/HJLU.json.gz",
   "HJMU": "data/cont/HJMU.json.gz",
+  "HKLU": "data/cont/HKLU.json.gz",
   "HLBU": "data/cont/HLBU.json.gz",
   "HLFU": "data/cont/HLFU.json.gz",
   "HLHU": "data/cont/HLHU.json.gz",
@@ -1996,6 +2002,7 @@
   "SERU": "data/cont/SERU.json.gz",
   "SFCU": "data/cont/SFCU.json.gz",
   "SFLU": "data/cont/SFLU.json.gz",
+  "SFMU": "data/cont/SFMU.json.gz",
   "SGCU": "data/cont/SGCU.json.gz",
   "SGFU": "data/cont/SGFU.json.gz",
   "SGLU": "data/cont/SGLU.json.gz",
@@ -2296,6 +2303,7 @@
   "KHX": "data/lane/KHX.json.gz",
   "LHT": "data/lane/LHT.json.gz",
   "ME1": "data/lane/ME1.json.gz",
+  "ME3": "data/lane/ME3.json.gz",
   "MES": "data/lane/MES.json.gz",
   "MFX": "data/lane/MFX.json.gz",
   "MGA": "data/lane/MGA.json.gz",
@@ -2318,6 +2326,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 392153,
- "total_rows": 1165508
+ "total_containers": 394202,
+ "total_rows": 1178032
 }
