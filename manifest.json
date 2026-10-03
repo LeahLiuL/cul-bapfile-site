@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-02 23:06:26",
+ "generated_at": "2026-10-03 23:04:03",
  "base_cols": [
   "vvd",
   "lane",
@@ -97,6 +97,7 @@
   "IQH",
   "JCT",
   "JPS",
+  "JSM",
   "KCI",
   "KHX",
   "LHT",
@@ -2299,6 +2300,7 @@
   "IQH": "data/lane/IQH.json.gz",
   "JCT": "data/lane/JCT.json.gz",
   "JPS": "data/lane/JPS.json.gz",
+  "JSM": "data/lane/JSM.json.gz",
   "KCI": "data/lane/KCI.json.gz",
   "KHX": "data/lane/KHX.json.gz",
   "LHT": "data/lane/LHT.json.gz",
@@ -2326,6 +2328,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 394202,
- "total_rows": 1178032
+ "total_containers": 396347,
+ "total_rows": 1185776
 }
