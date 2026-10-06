@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-05 23:06:20",
+ "generated_at": "2026-10-06 23:11:57",
  "base_cols": [
   "vvd",
   "lane",
@@ -75,7 +75,8 @@
   "2026-07",
   "2026-08",
   "2026-09",
-  "2026-10"
+  "2026-10",
+  "2026-11"
  ],
  "lanes": [
   "AM1",
@@ -705,6 +706,7 @@
   "MAUU",
   "MAXU",
   "MBFU",
+  "MBHU",
   "MBIU",
   "MBSU",
   "MCAU",
@@ -1105,6 +1107,7 @@
   "UNSU",
   "UNXU",
   "UPAU",
+  "USAU",
   "UTCU",
   "UTTU",
   "UWAU",
@@ -1778,6 +1781,7 @@
   "MAUU": "data/cont/MAUU.json.gz",
   "MAXU": "data/cont/MAXU.json.gz",
   "MBFU": "data/cont/MBFU.json.gz",
+  "MBHU": "data/cont/MBHU.json.gz",
   "MBIU": "data/cont/MBIU.json.gz",
   "MBSU": "data/cont/MBSU.json.gz",
   "MCAU": "data/cont/MCAU.json.gz",
@@ -2178,6 +2182,7 @@
   "UNSU": "data/cont/UNSU.json.gz",
   "UNXU": "data/cont/UNXU.json.gz",
   "UPAU": "data/cont/UPAU.json.gz",
+  "USAU": "data/cont/USAU.json.gz",
   "UTCU": "data/cont/UTCU.json.gz",
   "UTTU": "data/cont/UTTU.json.gz",
   "UWAU": "data/cont/UWAU.json.gz",
@@ -2278,7 +2283,8 @@
   "2026-07": "data/month/2026-07.json.gz",
   "2026-08": "data/month/2026-08.json.gz",
   "2026-09": "data/month/2026-09.json.gz",
-  "2026-10": "data/month/2026-10.json.gz"
+  "2026-10": "data/month/2026-10.json.gz",
+  "2026-11": "data/month/2026-11.json.gz"
  },
  "lane_files": {
   "AM1": "data/lane/AM1.json.gz",
@@ -2328,6 +2334,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 397100,
- "total_rows": 1192503
+ "total_containers": 398418,
+ "total_rows": 1201372
 }
