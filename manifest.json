@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-06 23:26:02",
+ "generated_at": "2026-10-07 23:04:27",
  "base_cols": [
   "vvd",
   "lane",
@@ -272,6 +272,7 @@
   "CKFU",
   "CKLU",
   "CKSU",
+  "CLCU",
   "CLHU",
   "CLNU",
   "CLPU",
@@ -794,6 +795,7 @@
   "NSDU",
   "NSJU",
   "NSSU",
+  "NSTU",
   "NTCU",
   "NVLU",
   "NVOU",
@@ -1347,6 +1349,7 @@
   "CKFU": "data/cont/CKFU.json.gz",
   "CKLU": "data/cont/CKLU.json.gz",
   "CKSU": "data/cont/CKSU.json.gz",
+  "CLCU": "data/cont/CLCU.json.gz",
   "CLHU": "data/cont/CLHU.json.gz",
   "CLNU": "data/cont/CLNU.json.gz",
   "CLPU": "data/cont/CLPU.json.gz",
@@ -1869,6 +1872,7 @@
   "NSDU": "data/cont/NSDU.json.gz",
   "NSJU": "data/cont/NSJU.json.gz",
   "NSSU": "data/cont/NSSU.json.gz",
+  "NSTU": "data/cont/NSTU.json.gz",
   "NTCU": "data/cont/NTCU.json.gz",
   "NVLU": "data/cont/NVLU.json.gz",
   "NVOU": "data/cont/NVOU.json.gz",
@@ -2334,6 +2338,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 398418,
- "total_rows": 1201372
+ "total_containers": 399979,
+ "total_rows": 1210611
 }
