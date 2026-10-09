@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-08 23:06:35",
+ "generated_at": "2026-10-09 23:03:55",
  "base_cols": [
   "vvd",
   "lane",
@@ -1156,6 +1156,7 @@
   "WSDU",
   "WSKU",
   "WSWU",
+  "WTCU",
   "WUDU",
   "WWWU",
   "WXLU",
@@ -2238,6 +2239,7 @@
   "WSDU": "data/cont/WSDU.json.gz",
   "WSKU": "data/cont/WSKU.json.gz",
   "WSWU": "data/cont/WSWU.json.gz",
+  "WTCU": "data/cont/WTCU.json.gz",
   "WUDU": "data/cont/WUDU.json.gz",
   "WWWU": "data/cont/WWWU.json.gz",
   "WXLU": "data/cont/WXLU.json.gz",
@@ -2348,6 +2350,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 403336,
- "total_rows": 1217055
+ "total_containers": 404215,
+ "total_rows": 1227198
 }
