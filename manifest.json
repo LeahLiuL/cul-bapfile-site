@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-10 23:17:24",
+ "generated_at": "2026-10-11 23:03:58",
  "base_cols": [
   "vvd",
   "lane",
@@ -492,6 +492,7 @@
   "GMTU",
   "GNLU",
   "GOAU",
+  "GODU",
   "GOSU",
   "GRFU",
   "GRMU",
@@ -1184,6 +1185,7 @@
   "YMSU",
   "YOIU",
   "YOLU",
+  "YQLU",
   "YTSU",
   "YTYU",
   "YXCU",
@@ -1575,6 +1577,7 @@
   "GMTU": "data/cont/GMTU.json.gz",
   "GNLU": "data/cont/GNLU.json.gz",
   "GOAU": "data/cont/GOAU.json.gz",
+  "GODU": "data/cont/GODU.json.gz",
   "GOSU": "data/cont/GOSU.json.gz",
   "GRFU": "data/cont/GRFU.json.gz",
   "GRMU": "data/cont/GRMU.json.gz",
@@ -2267,6 +2270,7 @@
   "YMSU": "data/cont/YMSU.json.gz",
   "YOIU": "data/cont/YOIU.json.gz",
   "YOLU": "data/cont/YOLU.json.gz",
+  "YQLU": "data/cont/YQLU.json.gz",
   "YTSU": "data/cont/YTSU.json.gz",
   "YTYU": "data/cont/YTYU.json.gz",
   "YXCU": "data/cont/YXCU.json.gz",
@@ -2350,6 +2354,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 404737,
- "total_rows": 1230467
+ "total_containers": 406444,
+ "total_rows": 1240855
 }
