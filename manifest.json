@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-24 23:05:18",
+ "generated_at": "2026-10-25 23:05:35",
  "base_cols": [
   "vvd",
   "lane",
@@ -378,6 +378,7 @@
   "DVRU",
   "DXBU",
   "DYLU",
+  "DZPU",
   "EASU",
   "EAXU",
   "EBEU",
@@ -1194,6 +1195,7 @@
   "XMSU",
   "XNKU",
   "XRCU",
+  "XSIU",
   "XTCU",
   "XXXU",
   "XXXX",
@@ -1485,6 +1487,7 @@
   "DVRU": "data/cont/DVRU.json.gz",
   "DXBU": "data/cont/DXBU.json.gz",
   "DYLU": "data/cont/DYLU.json.gz",
+  "DZPU": "data/cont/DZPU.json.gz",
   "EASU": "data/cont/EASU.json.gz",
   "EAXU": "data/cont/EAXU.json.gz",
   "EBEU": "data/cont/EBEU.json.gz",
@@ -2301,6 +2304,7 @@
   "XMSU": "data/cont/XMSU.json.gz",
   "XNKU": "data/cont/XNKU.json.gz",
   "XRCU": "data/cont/XRCU.json.gz",
+  "XSIU": "data/cont/XSIU.json.gz",
   "XTCU": "data/cont/XTCU.json.gz",
   "XXXU": "data/cont/XXXU.json.gz",
   "XXXX": "data/cont/XXXX.json.gz",
@@ -2402,6 +2406,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 424851,
- "total_rows": 1314947
+ "total_containers": 425392,
+ "total_rows": 1318690
 }
