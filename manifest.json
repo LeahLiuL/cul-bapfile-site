@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-25 23:05:35",
+ "generated_at": "2026-10-26 23:06:02",
  "base_cols": [
   "vvd",
   "lane",
@@ -686,6 +686,7 @@
   "LBGU",
   "LBOU",
   "LCGU",
+  "LCLU",
   "LCRU",
   "LCSU",
   "LCUU",
@@ -910,6 +911,7 @@
   "RAJU",
   "RAVU",
   "RAWU",
+  "RBGU",
   "RBLU",
   "RCLU",
   "RDMU",
@@ -1795,6 +1797,7 @@
   "LBGU": "data/cont/LBGU.json.gz",
   "LBOU": "data/cont/LBOU.json.gz",
   "LCGU": "data/cont/LCGU.json.gz",
+  "LCLU": "data/cont/LCLU.json.gz",
   "LCRU": "data/cont/LCRU.json.gz",
   "LCSU": "data/cont/LCSU.json.gz",
   "LCUU": "data/cont/LCUU.json.gz",
@@ -2019,6 +2022,7 @@
   "RAJU": "data/cont/RAJU.json.gz",
   "RAVU": "data/cont/RAVU.json.gz",
   "RAWU": "data/cont/RAWU.json.gz",
+  "RBGU": "data/cont/RBGU.json.gz",
   "RBLU": "data/cont/RBLU.json.gz",
   "RCLU": "data/cont/RCLU.json.gz",
   "RDMU": "data/cont/RDMU.json.gz",
@@ -2406,6 +2410,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 425392,
- "total_rows": 1318690
+ "total_containers": 425628,
+ "total_rows": 1319171
 }
