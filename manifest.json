@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-29 23:05:24",
+ "generated_at": "2026-10-30 23:07:24",
  "base_cols": [
   "vvd",
   "lane",
@@ -76,7 +76,8 @@
   "2026-08",
   "2026-09",
   "2026-10",
-  "2026-11"
+  "2026-11",
+  "2026-12"
  ],
  "lanes": [
   "AM1",
@@ -279,6 +280,7 @@
   "CKSU",
   "CLCU",
   "CLHU",
+  "CLKU",
   "CLNU",
   "CLPU",
   "CLSU",
@@ -450,6 +452,7 @@
   "FLSU",
   "FLYU",
   "FLZU",
+  "FMIU",
   "FOCU",
   "FOHU",
   "FOLU",
@@ -1126,6 +1129,7 @@
   "TWIU",
   "TWLU",
   "TXGU",
+  "TXNU",
   "TXTU",
   "TYLU",
   "TYMU",
@@ -1401,6 +1405,7 @@
   "CKSU": "data/cont/CKSU.json.gz",
   "CLCU": "data/cont/CLCU.json.gz",
   "CLHU": "data/cont/CLHU.json.gz",
+  "CLKU": "data/cont/CLKU.json.gz",
   "CLNU": "data/cont/CLNU.json.gz",
   "CLPU": "data/cont/CLPU.json.gz",
   "CLSU": "data/cont/CLSU.json.gz",
@@ -1572,6 +1577,7 @@
   "FLSU": "data/cont/FLSU.json.gz",
   "FLYU": "data/cont/FLYU.json.gz",
   "FLZU": "data/cont/FLZU.json.gz",
+  "FMIU": "data/cont/FMIU.json.gz",
   "FOCU": "data/cont/FOCU.json.gz",
   "FOHU": "data/cont/FOHU.json.gz",
   "FOLU": "data/cont/FOLU.json.gz",
@@ -2248,6 +2254,7 @@
   "TWIU": "data/cont/TWIU.json.gz",
   "TWLU": "data/cont/TWLU.json.gz",
   "TXGU": "data/cont/TXGU.json.gz",
+  "TXNU": "data/cont/TXNU.json.gz",
   "TXTU": "data/cont/TXTU.json.gz",
   "TYLU": "data/cont/TYLU.json.gz",
   "TYMU": "data/cont/TYMU.json.gz",
@@ -2380,7 +2387,8 @@
   "2026-08": "data/month/2026-08.json.gz",
   "2026-09": "data/month/2026-09.json.gz",
   "2026-10": "data/month/2026-10.json.gz",
-  "2026-11": "data/month/2026-11.json.gz"
+  "2026-11": "data/month/2026-11.json.gz",
+  "2026-12": "data/month/2026-12.json.gz"
  },
  "lane_files": {
   "AM1": "data/lane/AM1.json.gz",
@@ -2432,6 +2440,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 430889,
- "total_rows": 1346030
+ "total_containers": 434484,
+ "total_rows": 1360611
 }
