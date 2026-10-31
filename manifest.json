@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-30 23:10:21",
+ "generated_at": "2026-10-31 23:06:36",
  "base_cols": [
   "vvd",
   "lane",
@@ -874,6 +874,7 @@
   "PCOU",
   "PCSU",
   "PCVU",
+  "PDCU",
   "PDQU",
   "PEAU",
   "PEMU",
@@ -1999,6 +2000,7 @@
   "PCOU": "data/cont/PCOU.json.gz",
   "PCSU": "data/cont/PCSU.json.gz",
   "PCVU": "data/cont/PCVU.json.gz",
+  "PDCU": "data/cont/PDCU.json.gz",
   "PDQU": "data/cont/PDQU.json.gz",
   "PEAU": "data/cont/PEAU.json.gz",
   "PEMU": "data/cont/PEMU.json.gz",
@@ -2440,6 +2442,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 434484,
- "total_rows": 1360611
+ "total_containers": 436338,
+ "total_rows": 1366227
 }
