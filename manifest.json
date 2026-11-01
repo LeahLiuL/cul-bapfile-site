@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-31 23:09:35",
+ "generated_at": "2026-11-01 23:04:16",
  "base_cols": [
   "vvd",
   "lane",
@@ -179,6 +179,7 @@
   "APSU",
   "APTU",
   "APZU",
+  "AREU",
   "ARKU",
   "ASCU",
   "ASHU",
@@ -444,6 +445,7 @@
   "FFSU",
   "FFXU",
   "FIIU",
+  "FIMU",
   "FITU",
   "FJKU",
   "FKJU",
@@ -1305,6 +1307,7 @@
   "APSU": "data/cont/APSU.json.gz",
   "APTU": "data/cont/APTU.json.gz",
   "APZU": "data/cont/APZU.json.gz",
+  "AREU": "data/cont/AREU.json.gz",
   "ARKU": "data/cont/ARKU.json.gz",
   "ASCU": "data/cont/ASCU.json.gz",
   "ASHU": "data/cont/ASHU.json.gz",
@@ -1570,6 +1573,7 @@
   "FFSU": "data/cont/FFSU.json.gz",
   "FFXU": "data/cont/FFXU.json.gz",
   "FIIU": "data/cont/FIIU.json.gz",
+  "FIMU": "data/cont/FIMU.json.gz",
   "FITU": "data/cont/FITU.json.gz",
   "FJKU": "data/cont/FJKU.json.gz",
   "FKJU": "data/cont/FKJU.json.gz",
@@ -2442,6 +2446,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 436338,
- "total_rows": 1366227
+ "total_containers": 437304,
+ "total_rows": 1371744
 }
