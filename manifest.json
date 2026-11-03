@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-02 23:20:09",
+ "generated_at": "2026-11-03 23:05:09",
  "base_cols": [
   "vvd",
   "lane",
@@ -136,6 +136,7 @@
   "AAFU",
   "AAIU",
   "AAMU",
+  "ABDU",
   "ABGU",
   "ABSU",
   "ABXU",
@@ -825,6 +826,7 @@
   "NRSU",
   "NSDU",
   "NSJU",
+  "NSRU",
   "NSSU",
   "NSTU",
   "NTCU",
@@ -992,6 +994,7 @@
   "SITU",
   "SJCU",
   "SJKU",
+  "SJUU",
   "SJYU",
   "SKHU",
   "SKIU",
@@ -1264,6 +1267,7 @@
   "AAFU": "data/cont/AAFU.json.gz",
   "AAIU": "data/cont/AAIU.json.gz",
   "AAMU": "data/cont/AAMU.json.gz",
+  "ABDU": "data/cont/ABDU.json.gz",
   "ABGU": "data/cont/ABGU.json.gz",
   "ABSU": "data/cont/ABSU.json.gz",
   "ABXU": "data/cont/ABXU.json.gz",
@@ -1953,6 +1957,7 @@
   "NRSU": "data/cont/NRSU.json.gz",
   "NSDU": "data/cont/NSDU.json.gz",
   "NSJU": "data/cont/NSJU.json.gz",
+  "NSRU": "data/cont/NSRU.json.gz",
   "NSSU": "data/cont/NSSU.json.gz",
   "NSTU": "data/cont/NSTU.json.gz",
   "NTCU": "data/cont/NTCU.json.gz",
@@ -2120,6 +2125,7 @@
   "SITU": "data/cont/SITU.json.gz",
   "SJCU": "data/cont/SJCU.json.gz",
   "SJKU": "data/cont/SJKU.json.gz",
+  "SJUU": "data/cont/SJUU.json.gz",
   "SJYU": "data/cont/SJYU.json.gz",
   "SKHU": "data/cont/SKHU.json.gz",
   "SKIU": "data/cont/SKIU.json.gz",
@@ -2446,6 +2452,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 437426,
- "total_rows": 1373432
+ "total_containers": 439623,
+ "total_rows": 1384954
 }
