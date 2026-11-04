@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-03 23:10:42",
+ "generated_at": "2026-11-04 23:05:21",
  "base_cols": [
   "vvd",
   "lane",
@@ -112,6 +112,7 @@
   "MV1",
   "NAF",
   "NAX",
+  "NCM",
   "NP2",
   "NSX",
   "RBC",
@@ -241,6 +242,7 @@
   "BWLU",
   "BXAU",
   "CAAU",
+  "CACU",
   "CADU",
   "CAEU",
   "CAIU",
@@ -1372,6 +1374,7 @@
   "BWLU": "data/cont/BWLU.json.gz",
   "BXAU": "data/cont/BXAU.json.gz",
   "CAAU": "data/cont/CAAU.json.gz",
+  "CACU": "data/cont/CACU.json.gz",
   "CADU": "data/cont/CADU.json.gz",
   "CAEU": "data/cont/CAEU.json.gz",
   "CAIU": "data/cont/CAIU.json.gz",
@@ -2435,6 +2438,7 @@
   "MV1": "data/lane/MV1.json.gz",
   "NAF": "data/lane/NAF.json.gz",
   "NAX": "data/lane/NAX.json.gz",
+  "NCM": "data/lane/NCM.json.gz",
   "NP2": "data/lane/NP2.json.gz",
   "NSX": "data/lane/NSX.json.gz",
   "RBC": "data/lane/RBC.json.gz",
@@ -2452,6 +2456,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 439623,
- "total_rows": 1384954
+ "total_containers": 439669,
+ "total_rows": 1385230
 }
