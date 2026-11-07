@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-06 23:25:23",
+ "generated_at": "2026-11-07 23:04:45",
  "base_cols": [
   "vvd",
   "lane",
@@ -603,12 +603,14 @@
   "HZLU",
   "IAAU",
   "IALU",
+  "IBSU",
   "ICDU",
   "ICKU",
   "ICOU",
   "ICUU",
   "IGMU",
   "IHOU",
+  "IKMU",
   "IKSU",
   "ILCU",
   "ILUU",
@@ -955,6 +957,7 @@
   "RRMU",
   "RRSU",
   "RTMU",
+  "RVPU",
   "RVSU",
   "RWAU",
   "RXCU",
@@ -1743,12 +1746,14 @@
   "HZLU": "data/cont/HZLU.json.gz",
   "IAAU": "data/cont/IAAU.json.gz",
   "IALU": "data/cont/IALU.json.gz",
+  "IBSU": "data/cont/IBSU.json.gz",
   "ICDU": "data/cont/ICDU.json.gz",
   "ICKU": "data/cont/ICKU.json.gz",
   "ICOU": "data/cont/ICOU.json.gz",
   "ICUU": "data/cont/ICUU.json.gz",
   "IGMU": "data/cont/IGMU.json.gz",
   "IHOU": "data/cont/IHOU.json.gz",
+  "IKMU": "data/cont/IKMU.json.gz",
   "IKSU": "data/cont/IKSU.json.gz",
   "ILCU": "data/cont/ILCU.json.gz",
   "ILUU": "data/cont/ILUU.json.gz",
@@ -2095,6 +2100,7 @@
   "RRMU": "data/cont/RRMU.json.gz",
   "RRSU": "data/cont/RRSU.json.gz",
   "RTMU": "data/cont/RTMU.json.gz",
+  "RVPU": "data/cont/RVPU.json.gz",
   "RVSU": "data/cont/RVSU.json.gz",
   "RWAU": "data/cont/RWAU.json.gz",
   "RXCU": "data/cont/RXCU.json.gz",
@@ -2472,6 +2478,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 441693,
- "total_rows": 1392530
+ "total_containers": 444493,
+ "total_rows": 1404661
 }
