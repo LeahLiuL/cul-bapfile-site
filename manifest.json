@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-07 23:08:01",
+ "generated_at": "2026-11-08 23:08:52",
  "base_cols": [
   "vvd",
   "lane",
@@ -1264,6 +1264,7 @@
   "ZIBU",
   "ZIMU",
   "ZJTU",
+  "ZLSU",
   "ZMOU",
   "ZNCU",
   "ZONU",
@@ -2407,6 +2408,7 @@
   "ZIBU": "data/cont/ZIBU.json.gz",
   "ZIMU": "data/cont/ZIMU.json.gz",
   "ZJTU": "data/cont/ZJTU.json.gz",
+  "ZLSU": "data/cont/ZLSU.json.gz",
   "ZMOU": "data/cont/ZMOU.json.gz",
   "ZNCU": "data/cont/ZNCU.json.gz",
   "ZONU": "data/cont/ZONU.json.gz",
@@ -2478,6 +2480,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 444493,
- "total_rows": 1404661
+ "total_containers": 444832,
+ "total_rows": 1406252
 }
