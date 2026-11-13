@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-10 23:06:26",
+ "generated_at": "2026-11-13 23:04:10",
  "base_cols": [
   "vvd",
   "lane",
@@ -975,6 +975,7 @@
   "SCNU",
   "SCSU",
   "SCTU",
+  "SCUU",
   "SCZU",
   "SDCU",
   "SDMU",
@@ -2121,6 +2122,7 @@
   "SCNU": "data/cont/SCNU.json.gz",
   "SCSU": "data/cont/SCSU.json.gz",
   "SCTU": "data/cont/SCTU.json.gz",
+  "SCUU": "data/cont/SCUU.json.gz",
   "SCZU": "data/cont/SCZU.json.gz",
   "SDCU": "data/cont/SDCU.json.gz",
   "SDMU": "data/cont/SDMU.json.gz",
@@ -2484,6 +2486,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 449586,
- "total_rows": 1425352
+ "total_containers": 453269,
+ "total_rows": 1441122
 }
