@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-17 23:07:12",
+ "generated_at": "2026-11-18 23:04:24",
  "base_cols": [
   "vvd",
   "lane",
@@ -171,6 +171,7 @@
   "AMEU",
   "AMFU",
   "AMHU",
+  "AMJU",
   "AMPU",
   "AMSU",
   "AMTU",
@@ -1326,6 +1327,7 @@
   "AMEU": "data/cont/AMEU.json.gz",
   "AMFU": "data/cont/AMFU.json.gz",
   "AMHU": "data/cont/AMHU.json.gz",
+  "AMJU": "data/cont/AMJU.json.gz",
   "AMPU": "data/cont/AMPU.json.gz",
   "AMSU": "data/cont/AMSU.json.gz",
   "AMTU": "data/cont/AMTU.json.gz",
@@ -2504,6 +2506,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 459653,
- "total_rows": 1471551
+ "total_containers": 460571,
+ "total_rows": 1477012
 }
