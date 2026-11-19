@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-18 23:06:50",
+ "generated_at": "2026-11-19 23:06:02",
  "base_cols": [
   "vvd",
   "lane",
@@ -834,6 +834,7 @@
   "NLLU",
   "NMLU",
   "NMRU",
+  "NMTU",
   "NOKU",
   "NONU",
   "NOWU",
@@ -1990,6 +1991,7 @@
   "NLLU": "data/cont/NLLU.json.gz",
   "NMLU": "data/cont/NMLU.json.gz",
   "NMRU": "data/cont/NMRU.json.gz",
+  "NMTU": "data/cont/NMTU.json.gz",
   "NOKU": "data/cont/NOKU.json.gz",
   "NONU": "data/cont/NONU.json.gz",
   "NOWU": "data/cont/NOWU.json.gz",
@@ -2506,6 +2508,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 460571,
- "total_rows": 1477012
+ "total_containers": 460974,
+ "total_rows": 1481642
 }
