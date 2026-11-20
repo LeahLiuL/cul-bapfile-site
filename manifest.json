@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-19 23:08:43",
+ "generated_at": "2026-11-20 23:04:34",
  "base_cols": [
   "vvd",
   "lane",
@@ -185,6 +185,7 @@
   "APSU",
   "APTU",
   "APZU",
+  "ARDU",
   "AREU",
   "ARKU",
   "ASCU",
@@ -836,6 +837,7 @@
   "NMRU",
   "NMTU",
   "NOKU",
+  "NONE",
   "NONU",
   "NOWU",
   "NPCU",
@@ -1342,6 +1344,7 @@
   "APSU": "data/cont/APSU.json.gz",
   "APTU": "data/cont/APTU.json.gz",
   "APZU": "data/cont/APZU.json.gz",
+  "ARDU": "data/cont/ARDU.json.gz",
   "AREU": "data/cont/AREU.json.gz",
   "ARKU": "data/cont/ARKU.json.gz",
   "ASCU": "data/cont/ASCU.json.gz",
@@ -1993,6 +1996,7 @@
   "NMRU": "data/cont/NMRU.json.gz",
   "NMTU": "data/cont/NMTU.json.gz",
   "NOKU": "data/cont/NOKU.json.gz",
+  "NONE": "data/cont/NONE.json.gz",
   "NONU": "data/cont/NONU.json.gz",
   "NOWU": "data/cont/NOWU.json.gz",
   "NPCU": "data/cont/NPCU.json.gz",
@@ -2508,6 +2512,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 460974,
- "total_rows": 1481642
+ "total_containers": 462155,
+ "total_rows": 1490684
 }
