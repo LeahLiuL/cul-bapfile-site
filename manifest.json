@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-24 23:07:08",
+ "generated_at": "2026-11-25 23:04:48",
  "base_cols": [
   "vvd",
   "lane",
@@ -368,6 +368,7 @@
   "DCVU",
   "DDDU",
   "DECU",
+  "DELU",
   "DEMU",
   "DEVU",
   "DFCU",
@@ -1531,6 +1532,7 @@
   "DCVU": "data/cont/DCVU.json.gz",
   "DDDU": "data/cont/DDDU.json.gz",
   "DECU": "data/cont/DECU.json.gz",
+  "DELU": "data/cont/DELU.json.gz",
   "DEMU": "data/cont/DEMU.json.gz",
   "DEVU": "data/cont/DEVU.json.gz",
   "DFCU": "data/cont/DFCU.json.gz",
@@ -2520,6 +2522,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 466070,
- "total_rows": 1516399
+ "total_containers": 467284,
+ "total_rows": 1523751
 }
