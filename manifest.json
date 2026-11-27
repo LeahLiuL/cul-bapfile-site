@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-26 23:07:29",
+ "generated_at": "2026-11-27 23:04:47",
  "base_cols": [
   "vvd",
   "lane",
@@ -655,6 +655,7 @@
   "JGHU",
   "JGYU",
   "JHBU",
+  "JHFU",
   "JHSU",
   "JHTU",
   "JIEU",
@@ -1089,6 +1090,7 @@
   "TAHU",
   "TAIU",
   "TAKU",
+  "TANU",
   "TARU",
   "TASU",
   "TBCU",
@@ -1819,6 +1821,7 @@
   "JGHU": "data/cont/JGHU.json.gz",
   "JGYU": "data/cont/JGYU.json.gz",
   "JHBU": "data/cont/JHBU.json.gz",
+  "JHFU": "data/cont/JHFU.json.gz",
   "JHSU": "data/cont/JHSU.json.gz",
   "JHTU": "data/cont/JHTU.json.gz",
   "JIEU": "data/cont/JIEU.json.gz",
@@ -2253,6 +2256,7 @@
   "TAHU": "data/cont/TAHU.json.gz",
   "TAIU": "data/cont/TAIU.json.gz",
   "TAKU": "data/cont/TAKU.json.gz",
+  "TANU": "data/cont/TANU.json.gz",
   "TARU": "data/cont/TARU.json.gz",
   "TASU": "data/cont/TASU.json.gz",
   "TBCU": "data/cont/TBCU.json.gz",
@@ -2522,6 +2526,6 @@
   "SVP": "data/lane/SVP.json.gz",
   "WAT": "data/lane/WAT.json.gz"
  },
- "total_containers": 467446,
- "total_rows": 1528903
+ "total_containers": 468554,
+ "total_rows": 1534516
 }
